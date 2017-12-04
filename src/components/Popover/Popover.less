@@ -1,0 +1,48 @@
+@import "../../styles/import";
+
+.popover-placement (@name, @reverse, @size) {
+  &[x-placement^=@{name}] {
+    margin-@{reverse}: @size;
+  }
+
+  &[x-placement^=@{name}] &__arrow {
+    border-@{name}-color: @popover-fill;
+    border-@{reverse}-width: 0px;
+    @{reverse}: -@size;
+  }
+}
+
+.bui-popover {
+  box-shadow: @popover-box-shadow;
+  border-radius: @popover-border-radius;
+  background: @popover-fill;
+  z-index: 8;
+
+  &&--narrow &__title,
+  &&--narrow &__content {
+    padding: 0;
+  }
+
+  &__arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-width: @popover-arrow-size;
+    border-style: solid;
+    border-color: transparent;
+  }
+
+  &__title,
+  &__content {
+    padding: @popover-padding;
+  }
+
+  &__title + &__content {
+    border-top: @popover-content-boder;
+  }
+
+  .popover-placement(bottom, top, @popover-arrow-size);
+  .popover-placement(top, bottom, @popover-arrow-size);
+  .popover-placement(left, right, @popover-arrow-size);
+  .popover-placement(right, left, @popover-arrow-size);
+}

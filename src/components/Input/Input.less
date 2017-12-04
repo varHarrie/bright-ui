@@ -1,0 +1,104 @@
+@import "../../styles/import";
+
+.input-size (@size, @padding-v, @padding-h, @font-size) {
+  &.bui-input--@{size} {
+    font-size: @font-size;
+    line-height: @font-size + 2px;
+    
+    .bui-input__original {
+      padding: @padding-v @padding-h;
+      font-size: @font-size;
+      line-height: @font-size + 2px;
+    }
+
+    &.bui-input--has-prefix {
+      .bui-input__original {
+        padding-left: (@padding-v * 2) + (@font-size * 0.8);
+      }
+
+      .bui-input__prefix {
+        left: @padding-v;
+      }
+    }
+
+    &.bui-input--has-suffix {
+      .bui-input__original {
+        padding-right: (@padding-v * 2) + (@font-size * 0.8);
+      }
+
+      .bui-input__suffix {
+        right: @padding-v;
+      }
+    }
+  }
+}
+
+.bui-input {
+  display: inline-block;
+  position: relative;
+
+  &__original {
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    outline: none;
+    border-radius: @input-border-radius;
+    border: none;
+    box-shadow:
+      outside-shadow(@input-border-color),
+      border-shadow(@input-border-color, 0%);
+    background: @input-fill;
+    transition: background 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      box-shadow:
+        outside-shadow(@input-border-color),
+        border-shadow(@input-border-color-hover, 0%);
+    }
+
+    &:focus {
+      box-shadow:
+        outside-shadow(@input-border-color-focus, 70%),
+        border-shadow(@input-border-color-focus, 0%);
+    }
+
+    &::placeholder {
+      opacity: 0.4;
+    }
+  }
+
+  &__prefix,
+  &__suffix {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    line-height: 0;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .input-size(normal, @input-normal-padding-v, @input-normal-padding-h, @input-normal-font-size);
+  .input-size(small, @input-small-padding-v, @input-small-padding-h, @input-small-font-size);
+  .input-size(large, @input-large-padding-v, @input-large-padding-h, @input-large-font-size);
+
+  &&--disabled &__original {
+    background: @input-disabled-fill;
+    box-shadow:
+      outside-shadow(@input-border-color),
+      border-shadow(@input-border-color, 0%) !important;
+    cursor: default;
+  }
+
+  &&--full {
+    display: block;
+    width: 100%;
+  }
+
+  .bui-button + & {
+    margin-left: 5px;
+  }
+}

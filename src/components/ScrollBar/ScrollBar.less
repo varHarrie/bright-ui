@@ -1,0 +1,23 @@
+@import "../../styles/import";
+
+.bui-scroll-bar {
+  width: 100%;
+  height: 100%;
+
+  &&--dragging {
+    cursor: move;
+    user-select: none;
+  }
+
+  &&--vertical {
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  &&--horizontal {
+    overflow-y: hidden;
+    overflow-x: auto;
+  }
+
+  .scroll-bar()
+}

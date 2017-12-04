@@ -1,0 +1,69 @@
+@import "../../styles/import";
+
+.tag-size (@name, @padding-v, @padding-h, @font-size) {
+  &&--@{name} {
+    padding: @padding-v @padding-h;
+    font-size: @font-size;
+    height: @font-size + 2 * @padding-v;
+
+    .bui-tag__close {
+      top: @padding-v;
+      right: @padding-h;
+    }
+
+    &--closable:hover {
+      padding-right: @padding-h + @font-size + 3px;
+
+      .bui-tag__close {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.bui-tag {
+  position: relative;
+  display: inline-block;
+  color: @tag-color;
+  border-radius: @tag-border-radius;
+  vertical-align: text-bottom;
+  line-height: 1.2em;
+  transition: padding 0.2s 0.1s;
+  user-select: none;
+  margin-right: 5px;
+
+  &&--clickable {
+    cursor: pointer;
+  }
+
+  &&--gray {
+    background: @tag-gray-fill;
+  }
+
+  &&--primary {
+    background: @tag-primary-fill;
+  }
+
+  &&--success {
+    background: @tag-success-fill;
+  }
+
+  &&--warning {
+    background: @tag-warning-fill;
+  }
+
+  &&--danger {
+    background: @tag-danger-fill;
+  }
+
+  .tag-size(normal, @tag-normal-padding-v, @tag-normal-padding-h, @tag-normal-font-size);
+  .tag-size(small, @tag-small-padding-v, @tag-small-padding-h, @tag-small-font-size);
+  .tag-size(large, @tag-large-padding-v, @tag-large-padding-h, @tag-large-font-size);
+
+  &__close {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+}

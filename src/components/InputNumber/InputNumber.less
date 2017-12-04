@@ -1,0 +1,63 @@
+@import "../../styles/import";
+
+.bui-input-number {
+  @border-color: @input-number-handler-border-color;
+  @hover-color: @input-number-handler-hover-color;
+  @active-fill: @input-number-handler-active-fill;
+
+  .bui-input__suffix {
+    right: 0 !important;
+    height: 100%;
+  }
+
+  &__handlers {
+    height: 100%;
+    width: 26px;
+    border-left: 1px solid @border-color;
+    text-align: center;
+    transition: opacity 0.3s;
+  }
+
+  &__handler-up {
+    // border-bottom: 1px solid @border-color;
+
+    &:after {
+      transform: translateY(6px) rotate(-45deg);
+    }
+  }
+
+  &__handler-down {
+    &:after {
+      transform: translateY(3px) rotate(135deg);
+    }
+  }
+
+  &__handler-up,
+  &__handler-down {
+    height: 50%;
+    width: 100%;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:after {
+      display: inline-block;
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-top: 1px solid @border-color;
+      border-right: 1px solid @border-color;
+      transition: border-color 0.3s;
+    }
+
+    &:hover,
+    &:active {
+      &:after {
+        border-color: @hover-color;
+      }
+    }
+
+    &:active {
+      background: @active-fill;
+    }
+  }
+}

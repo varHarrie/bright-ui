@@ -1,0 +1,152 @@
+@import "../../styles/import";
+
+.bui-calendar {
+  width: @calendar-padding * 2 + @calendar-item-size * 7;
+  user-select: none;
+
+  &__header {
+    padding: @calendar-padding @calendar-padding 0;
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__title {
+    flex: 1;
+  }
+
+  &__body {
+    overflow: hidden;
+  }
+
+  &__slider {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 300%;
+    white-space: nowrap;
+    transition: left 0.3s;
+  }
+
+  &__year-panel {
+    .bui-calendar__cell {
+      width: 20%;
+      height: 20%;
+    }
+  }
+
+  &__month-panel {
+    .bui-calendar__cell {
+      width: 33.3%;
+      height: 25%;
+    }
+  }
+
+  &__year-panel,
+  &__month-panel,
+  &__date-panel {
+    display: inline-block;
+    padding: @calendar-padding;
+    width: 100%;
+    white-space: normal;
+  }
+
+  &__date-panel-header{
+    font-weight: bold;
+
+    .bui-calendar__cell {
+      cursor: auto;
+
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  &__cell {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: @calendar-item-size;
+    height: @calendar-item-size;
+    line-height: @calendar-item-size;
+    border-radius: @calendar-item-border-radius;
+    text-align: center;
+    background: @calendar-item-fill;
+    cursor: pointer;
+    transition: all 0.3s;
+    
+    &:before {
+      position: absolute;
+      display: block;
+      content: '';
+      top: 50%;
+      left: 50%;
+      height: 80%;
+      width: 100%;
+      background: @calendar-item-fill-hover;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      transition: all 0.3s;
+    }
+    
+    & > span {
+      position: relative;
+      z-index: 1;
+    }
+
+    &:hover:before {
+      width: 80%;
+      opacity: 1;
+    }
+
+    &:active:before {
+      width: 100%;
+      height: 100%;
+      background: @calendar-item-fill-active;
+    }
+
+    &&--past {
+      color: @calendar-item-color-past;
+    }
+
+    &&--future {
+      color: @calendar-item-color-future;
+    }
+
+    &&--current {
+      color: @calendar-item-color-current;
+      font-weight: bold;
+    }
+
+    &&--selected {
+      color: @calendar-item-color-selected;
+
+      &:before {
+        width: 100%;
+        height: 100%;
+        background: @calendar-item-fill-selected;
+        box-shadow: outside-shadow(@calendar-item-fill-selected);
+        opacity: 1;
+        z-index: 2;
+      }
+
+      & > span {
+        z-index: 3;
+      }
+    }
+
+    &&--ranged {
+      color: @calendar-item-color-ranged;
+
+      &:before {
+        opacity: 1;
+        width: 100%;
+        height: 80%;
+        background: @calendar-item-fill-ranged;
+        border-radius: 0;
+      }
+    }
+  }
+}

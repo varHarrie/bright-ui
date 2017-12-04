@@ -1,0 +1,91 @@
+@import "../../styles/import";
+
+.message-type (@name, @color) {
+  &__@{name} {
+    .bui-message__icon {
+      color: @color;
+    }
+  }
+}
+
+.bui-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: @message-padding;
+  box-shadow: @message-box-shadow;
+  border-radius: @message-border-radius;
+  background: @message-fill;
+  line-height: @message-height;
+  overflow: hidden;
+
+  &__content {
+    flex: 1;
+    color: @message-content-color;
+  }
+
+  &__icon + &__content {
+    margin-left: 8px;
+  }
+
+  &__close {
+    margin-left: 8px;
+    opacity: 0.3;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .message-type(primary, @message-primary-color);
+  .message-type(success, @message-success-color);
+  .message-type(warning, @message-warning-color);
+  .message-type(danger, @message-danger-color);
+}
+
+.bui-message-group {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%);
+
+  .bui-message {
+    display: inline-flex;
+  }
+
+  &__item {
+    margin-top: @message-margin-top;
+    height: @message-height;
+    text-align: center;
+
+    &-enter {
+      opacity: 0.01;
+      height: 0;
+      margin-top: 0;
+  
+      &&-active {
+        opacity: 1;
+        height: @message-height;
+        margin-top: 10px;
+        transition: all 0.3s;
+      }
+    }
+  
+    &-exit {
+      opacity: 1;
+      height: @message-height;
+      margin-top: 10px;
+  
+      &&-active {
+        opacity: 0;
+        height: 0;
+        margin-top: 0;
+        transition: all 0.3s;
+      }
+    }
+  }
+}

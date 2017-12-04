@@ -1,0 +1,73 @@
+@import "../../styles/import";
+
+.notification-type (@name, @color) {
+  &__@{name} {
+    .bui-notification__icon {
+      color: @color;
+    }
+  }
+}
+
+.bui-notification {
+  position: relative;
+  padding: @notification-padding;
+  display: flex;
+  flex-direction: row;
+  box-shadow: @notification-box-shadow;
+  border-radius: @notification-border-radius;
+  background: @notification-fill;
+  overflow: hidden;
+  min-width: 200px;
+
+  &__close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    opacity: 0.3;
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.3s;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__icon {
+    i {
+      font-size: 32px;
+    }
+  }
+
+  &__body {
+    flex: 1;
+    margin-left: 8px;
+    word-break: break-all;
+  }
+
+  &__title {
+    font-size: 1.2em;
+  }
+
+  &__title + &__content {
+    margin-top: 8px;
+  }
+
+  &&--only-title {
+    align-items: center;
+
+    .bui-notification__icon i {
+      font-size: 18px;
+    }
+
+    .bui-notification__close {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .notification-type(primary, @message-primary-color);
+  .notification-type(success, @message-success-color);
+  .notification-type(warning, @message-warning-color);
+  .notification-type(danger, @message-danger-color);
+}

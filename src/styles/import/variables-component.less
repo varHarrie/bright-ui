@@ -1,0 +1,358 @@
+@import "./variables-base";
+
+// Avatar
+// ----------------------------
+@avatar-fill: @color-gray-light;
+@avatar-normal-border-radius: 2px;
+@avatar-normal-size: 32px;
+
+@avatar-small-border-radius: 2px;
+@avatar-small-size: 24px;
+
+@avatar-large-border-radius: 4px;
+@avatar-large-size: 48px;
+
+// Badge
+// ----------------------------
+@badge-size: 20px;
+@badge-dot-size: 8px;
+
+@badge-fill-primary: @color-primary;
+@badge-fill-success: @color-success;
+@badge-fill-warning: @color-warning;
+@badge-fill-danger: @color-danger;
+@badge-fill-gray: @color-gray;
+
+// Box
+// ----------------------------
+@segment-fill: @color-white-base;
+@segment-box-shadow: @box-shadow-light;
+@segment-border-radius: @border-radius-large;
+@segment-border: @border;
+@segment-box-shadow-hover: @box-shadow-large;
+
+// Button
+// ----------------------------
+@button-border-radius: @border-radius-large;
+@button-color: @color-white-base;
+@button-fill: @color-gray-dark;
+
+@button-small-height: 28px;
+@button-small-padding-v: 7px;
+@button-small-padding-h: 10px;
+@button-small-font-size: @font-size-small;
+
+@button-normal-height: 32px;
+@button-normal-padding-v: 8px;
+@button-normal-padding-h: 18px;
+@button-normal-font-size: @font-size;
+
+@button-large-height: 36px;
+@button-large-padding-v: 9px;
+@button-large-padding-h: 22px;
+@button-large-font-size: @font-size-large;
+
+@button-plain-color: @font-color-light;
+@button-plain-color-hover: @color-primary;
+
+@button-primary-color: @color-white-base;
+@button-primary-fill: @color-primary;
+
+@button-success-color: @color-white-base;
+@button-success-fill: @color-success;
+
+@button-warning-color: @color-white-base;
+@button-warning-fill: @color-warning;
+
+@button-danger-color: @color-white-base;
+@button-danger-fill: @color-danger;
+
+@button-white-color: @color-gray-darker;
+@button-white-fill: @color-white-base;
+
+@button-black-color: @color-gray;
+@button-black-fill: @color-black;
+
+// Calendar
+// ----------------------------
+@calendar-padding: 10px;
+@calendar-item-size: 32px;
+@calendar-item-border-radius: @border-radius;
+@calendar-item-color-current: @color-primary;
+@calendar-item-color-past: rgba(0, 0, 0, 0.3);
+@calendar-item-color-future: rgba(0, 0, 0, 0.3);
+@calendar-item-color-selected: @color-white-base;
+@calendar-item-color-ranged: @font-color;
+@calendar-item-fill: @color-white-base;
+@calendar-item-fill-hover: @color-gray-lighter;
+@calendar-item-fill-active: @color-gray-light;
+@calendar-item-fill-selected: @color-primary;
+@calendar-item-fill-ranged: fadeout(@color-primary, 85%);
+
+// Container
+// ----------------------------
+@container-sm-width: 723px;
+@container-md-width: 933px;
+@container-lg-width: 1127px;
+
+// CheckBox
+// ----------------------------
+@checkbox-border-radius: @border-radius-large;
+@checkbox-border-width: 2px;
+@checkbox-border-color: @color-gray-dark;
+@checkbox-border-color-hover: @color-primary;
+@checkbox-inner-border: 3px solid @color-white-base;
+@checkbox-fill-active: @color-primary;
+@checkbox-fill-disabled: @color-gray-lighter;
+@checkbox-color-disabled: @font-color-disabled;
+
+@checkbox-small-font-size: @font-size;
+@checkbox-normal-font-size: @font-size-large;
+@checkbox-large-font-size: @font-size-huge;
+
+// Dialog
+// ----------------------------
+@dialog-fill: @color-white-base;
+@dialog-padding: 16px;
+@dialog-plain-padding: 28px;
+@dialog-border-radius: @border-radius;
+@dialog-box-shadow: @box-shadow;
+@dialog-divider-border: @border;
+
+@dialog-normal-width: 480px;
+@dialog-small-width: 380px;
+@dialog-large-width: 580px;
+
+// Divider
+// ----------------------------
+@divider-border: @border;
+
+// Form
+// ----------------------------
+@form-mark-color: @color-danger;
+@form-error-color: @color-danger;
+@form-field-margin-bottom: 24px;
+@form-error-line-height: 18px;
+@form-error-font-size: 12px;
+
+// Grid (Row, Column)
+// ----------------------------
+@grid-max-columns: 24;
+
+// Icon
+// ----------------------------
+@icon-color-normal: inherit;
+@icon-color-gray: @color-gray;
+@icon-color-primary: @color-primary;
+@icon-color-success: @color-success;
+@icon-color-warning: @color-warning;
+@icon-color-danger: @color-danger;
+
+// Input
+// ----------------------------
+@input-border-radius: @border-radius-large;
+@input-border-color: @border-color-dark;
+@input-border-color-hover: fadeout(@color-primary, 40%);
+@input-border-color-focus: @color-primary;
+@input-fill: @color-white-base;
+@input-disabled-fill: @color-gray-lighter;
+
+@input-small-padding-v: 7px;
+@input-small-padding-h: 8px;
+@input-small-font-size: @font-size-small;
+
+@input-normal-padding-v: 8px;
+@input-normal-padding-h: 10px;
+@input-normal-font-size: @font-size;
+
+@input-large-padding-v: 9px;
+@input-large-padding-h: 12px;
+@input-large-font-size: @font-size-large;
+
+// InputNumber
+// ----------------------------
+@input-number-handler-border-color: @input-border-color;
+@input-number-handler-hover-color: @color-primary;
+@input-number-handler-active-fill: fadeout(@color-gray-lighter, 30%);
+
+// List
+// ----------------------------
+@list-title-color: @font-color-lighter;
+@list-title-font-size: 0.8em;
+
+@list-item-color: @font-color-light;
+@list-item-fill-hover: lighten(@color-gray-lighter, 2.5%);
+@list-item-fill-active: lighten(@color-gray-lighter, 2%);
+@list-item-mark-fill: @color-gray-light;
+
+@list-title-small-padding: 6px 8px;
+@list-item-small-padding: 8px 8px;
+@list-item-small-font-size: 1em;
+@list-item-small-line-height: 1.2em;
+
+@list-title-normal-padding: 10px 8px;
+@list-item-normal-padding: 10px 8px;
+@list-item-normal-font-size: 1em;
+@list-item-normal-line-height: 1.2em;
+
+@list-title-large-padding: 12px 8px;
+@list-item-large-padding: 12px 8px;
+@list-item-large-font-size: 1em;
+@list-item-large-line-height: 1.4em;
+
+// Loader
+// ----------------------------
+@loader-spin-size: 20px;
+@loader-spin-width: 3px;
+@loader-spin-style: solid;
+@loader-spin-color: @color-primary;
+@loader-text-color: @font-color-lighter;
+@loader-duration: 0.8s;
+@loader-mask-fill: transparent;
+
+// Mask
+// ----------------------------
+@mask-fill: rgba(238, 236, 232, 0.8);
+
+// Menu
+// ----------------------------
+@menu-line-height: 24px;
+@menu-color: @font-color-light;
+@menu-title-padding: 8px 12px;
+@menu-item-padding: 8px 12px;
+@menu-item-fill: @color-white-base;
+@menu-item-fill-hover: @color-gray-lighter;
+@menu-item-fill-active: @color-gray-light;
+
+@menu-border-radius: @border-radius;
+@menu-border: @border;
+
+// Message
+// ----------------------------
+@message-margin-top: 10px;
+@message-padding: 0 12px;
+@message-box-shadow: @box-shadow;
+@message-border-radius: @border-radius;
+@message-fill: @color-white-base;
+@message-content-color: @font-color-light;
+@message-height: 36px;
+
+@message-primary-color: @color-primary;
+@message-success-color: @color-success;
+@message-warning-color: @color-warning;
+@message-danger-color: @color-danger;
+
+// Notification
+// ----------------------------
+@notification-margin-top: 10px;
+@notification-padding: 12px;
+@notification-box-shadow: @box-shadow;
+@notification-border-radius: @border-radius;
+@notification-fill: @color-white-base;
+@notification-content-color: @font-color-light;
+
+// Pagination
+// ----------------------------
+@pagination-margin: 8px;
+@pagination-item-size: 32px;
+@pagination-item-border-radius: @border-radius;
+@pagination-item-color: @font-color-light;
+@pagination-item-color-active: @color-white-base;
+@pagination-item-color-disabled: @font-color-lighter;
+@pagination-item-fill: @color-white-base;
+@pagination-item-fill-active: @color-primary;
+@pagination-item-border-color: @color-gray-lighter;
+@pagination-item-border-color-hover: @color-primary;
+@pagination-item-border-color-active: @color-primary;
+
+// Popover
+// ----------------------------
+@popover-box-shadow: @box-shadow-large;
+@popover-border-radius: @border-radius;
+@popover-fill: @color-white-base;
+@popover-content-boder: @border;
+@popover-arrow-size: 6px;
+@popover-padding: 8px;
+
+// SidePanel
+// ----------------------------
+@side-panel-box-shadow: @box-shadow;
+@side-panel-border: @border;
+@side-panel-background: fadeout(@color-white-base, 20%);
+
+// Tag
+// ----------------------------
+@tag-color: @color-white-base;
+@tag-border-radius: @border-radius;
+
+@tag-gray-fill: @color-gray;
+@tag-primary-fill: @color-primary;
+@tag-success-fill: @color-success;
+@tag-warning-fill: @color-warning;
+@tag-danger-fill: @color-danger;
+
+@tag-small-padding-v: 4px;
+@tag-small-padding-h: 8px;
+@tag-small-font-size: @font-size-small;
+
+@tag-normal-padding-v: 4px;
+@tag-normal-padding-h: 8px;
+@tag-normal-font-size: @font-size;
+
+@tag-large-padding-v: 6px;
+@tag-large-padding-h: 12px;
+@tag-large-font-size: @font-size-large;
+
+// Textarea
+// ----------------------------
+@textarea-border-radius: @border-radius-large;
+@textarea-border-color: @border-color-dark;
+@textarea-border-color-hover: fadeout(@color-primary, 40%);
+@textarea-border-color-focus: @color-primary;
+@textarea-fill: @color-white-base;
+@textarea-disabled-fill: @color-gray-lighter;
+
+@textarea-padding-v: 8px;
+@textarea-padding-h: 10px;
+@textarea-font-size: @font-size;
+
+@textarea-small-padding-v: 7px;
+@textarea-small-padding-h: 8px;
+@textarea-small-font-size: @font-size-small;
+
+@textarea-large-padding-v: 10px;
+@textarea-large-padding-h: 12px;
+@textarea-large-font-size: @font-size-large;
+
+// TimePicker
+// ----------------------------
+@time-picker-cell-width: 60px;
+@time-picker-cell-height: 24px;
+@time-picker-cell-font-size: 12px;
+@time-picker-cell-fill-hover: @color-gray-lighter;
+@time-picker-cell-fill-selected: @color-gray-lighter;
+@time-picker-cell-color-selected: @color-primary;
+@time-picker-cells-border: @border;
+// Tooltip
+// ----------------------------
+@tooltip-font-size: 12px;
+@tooltip-padding: 8px 10px;
+@tooltip-arrow-size: 4px;
+@tooltip-border-radius: 2px;
+
+@tooltip-dark-fill: #333;
+@tooltip-dark-color: @color-white-base;
+@tooltip-dark-box-shadow: none;
+
+@tooltip-light-fill: @color-white-base;
+@tooltip-light-color: @font-color-light;
+@tooltip-light-box-shadow: @box-shadow;
+
+// Tree
+// ----------------------------
+@tree-line-height: 32px;
+@tree-color: @font-color-light;
+@tree-color-hover: @color-primary;
+@tree-fill: @color-white-base;
+@tree-fill-active: lighten(@color-gray-lighter, 2%);
+@tree-border-radius: 0;

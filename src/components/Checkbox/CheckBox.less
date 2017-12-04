@@ -1,0 +1,116 @@
+@import "../../styles/import";
+
+.bui-checkbox {
+  margin: 0 5px;
+  display: inline-block;
+  white-space: nowrap;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+
+  &__header {
+    position: relative;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    border-radius: @checkbox-border-radius;
+    box-shadow:
+      outside-shadow(@checkbox-border-color, 70%),
+      border-shadow(@checkbox-border-color, 60%, @checkbox-border-width);
+    vertical-align: middle;
+    transition: all 0.3s;
+
+    &::after {
+      position: absolute;
+      display: table;
+      top: 45%;
+      left: 50%;
+      width: 0.2em;
+      height: 0.4em;
+      border: @checkbox-inner-border;
+      border-top: 0;
+      border-left: 0;
+      content: "";
+      transition: all 0.3s;
+      transform: translate(-50%, -50%) rotate(45deg) scale(0);
+    }
+  }
+
+  &__original {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    outline: none;
+    cursor: pointer;
+  }
+
+  &__content {
+    vertical-align: middle;
+
+    &:not(:empty) {
+      margin-left: 0.5em;
+    }
+  }
+
+  &:hover &__header {
+    box-shadow:
+      outside-shadow(@checkbox-fill-active, 70%),
+      border-shadow(@checkbox-fill-active, 0%, 2px);
+  }
+
+  &:active &__header {
+    background: fadeout(@checkbox-fill-active, 90%);
+  }
+
+  &&--checked &__header::after {
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  }
+
+  &&--indeterminate &__header::after {
+    height: 0.5em;
+    border-bottom: 0;
+    transform: translate(-50%, -50%) rotate(90deg) scale(1);
+  }
+
+  &--indeterminate &__header,
+  &--checked &__header {
+    background: @checkbox-fill-active;
+    box-shadow:
+      outside-shadow(@checkbox-fill-active, 70%),
+      border-shadow(@checkbox-fill-active);
+  }
+
+  &--disabled & {
+    &__header {
+      background: @checkbox-fill-disabled;
+      box-shadow:
+        outside-shadow(@checkbox-border-color, 70%),
+        border-shadow(@checkbox-border-color, 80%, 2px) !important;
+  
+      &::after {
+        border-color: fade(@checkbox-border-color, 60%);
+      }
+    }
+
+    &__content {
+      color: @checkbox-color-disabled;
+    }
+  }
+
+  &--small &__header {
+    font-size: @checkbox-small-font-size;
+  }
+
+  &--normal &__header {
+    font-size: @checkbox-normal-font-size;
+  }
+
+  &--large &__header {
+    font-size: @checkbox-large-font-size;
+  }
+}

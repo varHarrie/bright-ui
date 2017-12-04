@@ -1,0 +1,28 @@
+@import "../../styles/import";
+
+.avatar-style(@name, @size, @border-radius) {
+  &--@{name} {
+    border-radius: @border-radius;
+    width: @size;
+    height: @size;
+  }
+}
+
+.bui-avatar {
+  display: inline-block;
+  overflow: hidden;
+  background: @avatar-fill;
+  vertical-align: middle;
+
+  img {
+    width: 100%;
+
+    &[src=""] {
+      display: none;
+    }
+  }
+
+  .avatar-style(small, @avatar-small-size, @avatar-small-border-radius);
+  .avatar-style(normal, @avatar-normal-size, @avatar-normal-border-radius);
+  .avatar-style(large, @avatar-large-size, @avatar-large-border-radius);
+}

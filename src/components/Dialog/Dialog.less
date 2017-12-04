@@ -1,0 +1,120 @@
+@import "../../styles/import";
+
+@media (max-width: 768px) {
+  .bui-dialog {
+    &&--normal,
+    &&--small,
+    &&--large {
+      width: 90%;
+      margin: 10px;
+    }
+  }
+}
+
+.dialog-size (@name, @width, @padding) {
+  &--@{name} {
+    width: @width;
+
+    .bui-dialog__header,
+    .bui-dialog__body,
+    .bui-dialog__footer {
+      padding: @padding;
+    }
+  }
+}
+
+.bui-dialog {
+  position: fixed;
+  top: 100px;
+  left: 50%;
+  z-index: 6;
+  background: @dialog-fill;
+  transform: translateX(-50%);
+  border-radius: @dialog-border-radius;
+  box-shadow: @dialog-box-shadow;
+
+  .dialog-size(normal, @dialog-normal-width, @dialog-padding);
+  .dialog-size(small, @dialog-small-width, @dialog-padding);
+  .dialog-size(large, @dialog-large-width, @dialog-padding);
+
+  &__close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    cursor: pointer;
+    opacity: 0.6;
+    text-align: center;
+    font-size: 1.3em;
+    width: 1.3em;
+    height: 1.3em;
+    line-height: 1.3em;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  
+  &__header {
+    font-size: 1.2em;
+  }
+
+  &__footer {
+    .clear-both();
+
+    .bui-dialog__actions {
+      float: right;
+    }
+  }
+
+  &--plain {
+    padding: @dialog-plain-padding;
+  }
+
+  &--plain & {
+    &__body,
+    &__footer {
+      border-top: none !important;
+    }
+  }
+
+
+  &__header + &__body,
+  &__body + &__footer,
+  &__header + &__footer {
+    border-top: @dialog-divider-border;
+  }
+}
+
+.bui-confirm,
+.bui-prompt {
+  .bui-dialog__body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &__left {
+    margin-right: 10px;
+    
+    i {
+      font-size: 24px;
+    }
+  }
+  
+  &__right {
+    flex: 1;
+    word-break: break-all;
+    overflow: auto;
+  }
+
+  &__title {
+    font-size: 1.2em;
+    line-height: 26px;
+  }
+
+  &__content,
+  &__desc,
+  &__input {
+    margin-top: 10px;
+  }
+}

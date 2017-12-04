@@ -1,0 +1,21 @@
+@import "../../styles/import";
+
+.bui-segment {
+  background: @segment-fill;
+  box-shadow: @segment-box-shadow;
+  border-radius: @segment-border-radius;
+  transition: box-shadow 0.3s;
+
+  &--bordered {
+    border: @segment-border;
+  }
+
+  &--full {
+    width: 100%;
+    height: 100%;
+  }
+
+  &--raised:hover {
+    box-shadow: @segment-box-shadow-hover;
+  }
+}

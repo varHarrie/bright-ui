@@ -1,0 +1,29 @@
+@import "../../styles/import";
+
+.container-style (@screen-width, @width) {
+  @media (min-width: @screen-width) {
+    & {
+      width: @width !important;
+    }
+  }
+}
+
+.bui-container {
+  margin: 0 auto;
+
+  &--full {
+    height: 100%;
+  }
+
+  &--auto {
+    width: 100%;
+  }
+
+  &--fixed {
+    width: @container-sm-width;
+  }
+
+  .container-style(@screen-sm-min, @container-sm-width);
+  .container-style(@screen-md-min, @container-md-width);
+  .container-style(@screen-lg-min, @container-lg-width);
+}
