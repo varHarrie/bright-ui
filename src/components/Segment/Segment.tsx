@@ -5,6 +5,7 @@ import * as React from 'react'
 import Base from '../../libs/Base'
 
 export interface ISegmentProps {
+  narrow?: boolean
   bordered?: boolean
   full?: boolean
   raised?: boolean
@@ -12,11 +13,12 @@ export interface ISegmentProps {
 
 export default class Segment extends Base<ISegmentProps> {
   render () {
-    const {children, bordered, full, raised} = this.props
+    const {children, bordered, narrow, full, raised} = this.props
     const className = this.className(
       'bui-segment',
       {
         'bui-segment--bordered': bordered,
+        'bui-segment--narrow': narrow,
         'bui-segment--full': full,
         'bui-segment--raised': raised
       }
