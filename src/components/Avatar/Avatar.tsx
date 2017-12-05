@@ -36,8 +36,9 @@ export default class Avatar extends Base<IAvatarProps> {
       <div
         className={className}
         style={this.style({borderRadius})}
+        title={title}
       >
-        <img className='bui-avatar__img' title={title} src={src}/>
+        {src && <img className='bui-avatar__img' src={src}/>}
       </div>
     )
   }
