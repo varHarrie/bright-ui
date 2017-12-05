@@ -1,7 +1,6 @@
 @import "./variables-base";
 
 // Avatar
-// ----------------------------
 @avatar-user-fill: @color-white-base;
 @avatar-fill: @color-gray-light;
 @avatar-normal-border-radius: 2px;
@@ -14,7 +13,6 @@
 @avatar-large-size: 48px;
 
 // Badge
-// ----------------------------
 @badge-size: 20px;
 @badge-dot-size: 8px;
 
@@ -24,17 +22,7 @@
 @badge-fill-danger: @color-danger;
 @badge-fill-gray: @color-gray;
 
-// Box
-// ----------------------------
-@segment-padding: 14px;
-@segment-fill: @color-white-base;
-@segment-box-shadow: @box-shadow-light;
-@segment-border-radius: @border-radius-large;
-@segment-border: @border;
-@segment-box-shadow-hover: @box-shadow-large;
-
 // Button
-// ----------------------------
 @button-border-radius: @border-radius-large;
 @button-color: @color-white-base;
 @button-fill: @color-gray-dark;
@@ -76,29 +64,30 @@
 @button-black-fill: @color-black;
 
 // Calendar
-// ----------------------------
 @calendar-padding: 10px;
-@calendar-item-size: 32px;
-@calendar-item-border-radius: @border-radius;
-@calendar-item-color-current: @color-primary;
-@calendar-item-color-past: rgba(0, 0, 0, 0.3);
-@calendar-item-color-future: rgba(0, 0, 0, 0.3);
-@calendar-item-color-selected: @color-white-base;
-@calendar-item-color-ranged: @font-color;
-@calendar-item-fill: @color-white-base;
-@calendar-item-fill-hover: @color-gray-lighter;
-@calendar-item-fill-active: @color-gray-light;
-@calendar-item-fill-selected: @color-primary;
-@calendar-item-fill-ranged: fadeout(@color-primary, 85%);
+@calendar-cell-size: 32px;
+@calendar-cell-mark-size: 5px;
+@calendar-cell-mark-fill: @color-primary;
+@calendar-cell-mark-border: 1px solid @color-white-base;
+@calendar-cell-mark-border-radius: 5px;;
+@calendar-cell-border-radius: @border-radius;
+@calendar-cell-color-past: rgba(0, 0, 0, 0.3);
+@calendar-cell-color-future: rgba(0, 0, 0, 0.3);
+@calendar-cell-color-selected: @color-white-base;
+@calendar-cell-color-ranged: @font-color;
+@calendar-cell-fill: @color-white-base;
+@calendar-cell-fill-active: @color-primary;
+@calendar-cell-fill-selected: @color-primary;
+@calendar-cell-fill-ranged: fadeout(@color-primary, 85%);
+@calendar-cell-border-color-hover: @color-gray-light;
+@calendar-cell-border-color-active: @color-primary;
 
 // Container
-// ----------------------------
 @container-sm-width: 723px;
 @container-md-width: 933px;
 @container-lg-width: 1127px;
 
 // CheckBox
-// ----------------------------
 @checkbox-border-radius: @border-radius-large;
 @checkbox-border-width: 2px;
 @checkbox-border-color: @color-gray-dark;
@@ -113,7 +102,6 @@
 @checkbox-large-font-size: @font-size-huge;
 
 // Dialog
-// ----------------------------
 @dialog-fill: @color-white-base;
 @dialog-padding: 16px;
 @dialog-plain-padding: 28px;
@@ -126,11 +114,9 @@
 @dialog-large-width: 580px;
 
 // Divider
-// ----------------------------
 @divider-border: @border;
 
 // Form
-// ----------------------------
 @form-mark-color: @color-danger;
 @form-error-color: @color-danger;
 @form-field-margin-bottom: 24px;
@@ -138,11 +124,9 @@
 @form-error-font-size: 12px;
 
 // Grid (Row, Column)
-// ----------------------------
 @grid-max-columns: 24;
 
 // Icon
-// ----------------------------
 @icon-color-normal: inherit;
 @icon-color-gray: @color-gray;
 @icon-color-primary: @color-primary;
@@ -151,7 +135,6 @@
 @icon-color-danger: @color-danger;
 
 // Input
-// ----------------------------
 @input-border-radius: @border-radius-large;
 @input-border-color: @border-color-dark;
 @input-border-color-hover: fadeout(@color-primary, 40%);
@@ -172,13 +155,11 @@
 @input-large-font-size: @font-size-large;
 
 // InputNumber
-// ----------------------------
 @input-number-handler-border-color: @input-border-color;
 @input-number-handler-hover-color: @color-primary;
 @input-number-handler-active-fill: fadeout(@color-gray-lighter, 30%);
 
 // List
-// ----------------------------
 @list-title-color: @font-color-lighter;
 @list-title-font-size: 0.8em;
 
@@ -203,7 +184,6 @@
 @list-item-large-line-height: 1.4em;
 
 // Loader
-// ----------------------------
 @loader-spin-size: 20px;
 @loader-spin-width: 3px;
 @loader-spin-style: solid;
@@ -213,11 +193,9 @@
 @loader-mask-fill: transparent;
 
 // Mask
-// ----------------------------
 @mask-fill: rgba(238, 236, 232, 0.8);
 
 // Menu
-// ----------------------------
 @menu-line-height: 24px;
 @menu-color: @font-color-light;
 @menu-title-padding: 8px 12px;
@@ -230,7 +208,6 @@
 @menu-border: @border;
 
 // Message
-// ----------------------------
 @message-margin-top: 10px;
 @message-padding: 0 12px;
 @message-box-shadow: @box-shadow;
@@ -245,7 +222,6 @@
 @message-danger-color: @color-danger;
 
 // Notification
-// ----------------------------
 @notification-margin-top: 10px;
 @notification-padding: 12px;
 @notification-box-shadow: @box-shadow;
@@ -254,7 +230,6 @@
 @notification-content-color: @font-color-light;
 
 // Pagination
-// ----------------------------
 @pagination-margin: 8px;
 @pagination-item-size: 32px;
 @pagination-item-border-radius: @border-radius;
@@ -268,7 +243,6 @@
 @pagination-item-border-color-active: @color-primary;
 
 // Popover
-// ----------------------------
 @popover-box-shadow: @box-shadow-large;
 @popover-border-radius: @border-radius;
 @popover-fill: @color-white-base;
@@ -276,14 +250,20 @@
 @popover-arrow-size: 6px;
 @popover-padding: 8px;
 
+// Segment
+@segment-padding: 14px;
+@segment-fill: @color-white-base;
+@segment-box-shadow: @box-shadow-light;
+@segment-border-radius: @border-radius-large;
+@segment-border: @border;
+@segment-box-shadow-hover: @box-shadow-large;
+
 // SidePanel
-// ----------------------------
 @side-panel-box-shadow: @box-shadow;
 @side-panel-border: @border;
 @side-panel-background: fadeout(@color-white-base, 20%);
 
 // Tag
-// ----------------------------
 @tag-color: @color-white-base;
 @tag-border-radius: @border-radius;
 
@@ -306,7 +286,6 @@
 @tag-large-font-size: @font-size-large;
 
 // Textarea
-// ----------------------------
 @textarea-border-radius: @border-radius-large;
 @textarea-border-color: @border-color-dark;
 @textarea-border-color-hover: fadeout(@color-primary, 40%);
@@ -327,7 +306,6 @@
 @textarea-large-font-size: @font-size-large;
 
 // TimePicker
-// ----------------------------
 @time-picker-cell-width: 60px;
 @time-picker-cell-height: 24px;
 @time-picker-cell-font-size: 12px;
@@ -335,8 +313,8 @@
 @time-picker-cell-fill-selected: @color-gray-lighter;
 @time-picker-cell-color-selected: @color-primary;
 @time-picker-cells-border: @border;
+
 // Tooltip
-// ----------------------------
 @tooltip-font-size: 12px;
 @tooltip-padding: 8px 10px;
 @tooltip-arrow-size: 4px;
@@ -351,7 +329,6 @@
 @tooltip-light-box-shadow: @box-shadow;
 
 // Tree
-// ----------------------------
 @tree-line-height: 32px;
 @tree-color: @font-color-light;
 @tree-color-hover: @color-primary;

@@ -125,7 +125,6 @@ export default class DatePanel extends Base<IDatePanelProps, IDatePanelState> {
         const text = date.getDate()
         const status = (this.checkSelected(date) && 'selected')
           || (this.checkRanged(date) && 'ranged')
-          || (isSameDay(date, today) && 'current')
           || false
 
         return (
@@ -133,6 +132,7 @@ export default class DatePanel extends Base<IDatePanelProps, IDatePanelState> {
             key={type + text}
             type={type}
             status={status}
+            marked={isSameDay(date, today)}
             onClick={() => this.onSelect(date)}
             onMouseEnter={() => this.onMarkRange(date)}
           >{text}</CalendarCell>

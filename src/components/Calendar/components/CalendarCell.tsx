@@ -5,6 +5,7 @@ export interface ICalendarCellProps {
   className?: string
   type?: string
   status?: string | false
+  marked?: boolean
   children?: React.ReactNode
   onClick?: React.MouseEventHandler<HTMLDivElement>
   onMouseEnter?: React.MouseEventHandler<HTMLDivElement>
@@ -14,14 +15,17 @@ export default function CalendarCell ({
   className,
   type,
   status,
+  marked,
   children,
   onClick,
   onMouseEnter
 }: ICalendarCellProps) {
+
   const classNames = cn(
     'bui-calendar__cell',
     type && `bui-calendar__cell--${type}`,
     status && `bui-calendar__cell--${status}`,
+    marked && 'bui-calendar__cell--marked',
     className
   )
 
