@@ -21,7 +21,7 @@
         "member-ordering": [true, "public-before-private", "static-before-instance"],
         "no-any": false,
         "no-arg": true,
-        "no-bitwise": true,
+        "no-bitwise": false,
         "no-console": [false],
         "no-consecutive-blank-lines": [true],
         "no-construct": true,
