@@ -1,7 +1,7 @@
 {
   "name": "bright-ui",
   "version": "0.0.1",
-  "description": "",
+  "description": "A set of components for React 16+.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
