@@ -3,9 +3,9 @@ import * as ReactDOM from 'react-dom'
 import * as CSSTransition from 'react-transition-group/CSSTransition'
 import * as TransitionGroup from 'react-transition-group/TransitionGroup'
 
-import Base, {MessageType} from '../../libs/Base'
-import * as OverlayManager from '../../libs/overlay-manager'
-import * as utils from '../../libs/utils'
+import Base, {MessageType} from '../../common/Base'
+import * as overlayUtil from '../../utils/overlay'
+import * as stringUtil from '../../utils/string'
 import Message from './Message'
 
 let instance: MessageGroup | null
@@ -31,7 +31,7 @@ class MessageGroup extends Base<IMessageGroupProps, IMessageGroupState> {
   }
 
   add = (options: IMessageOptions) => {
-    const item = {key: utils.randomKey(), options}
+    const item = {key: stringUtil.randomKey(), options}
     this.setState({items: [item, ...this.state.items]})
   }
 
@@ -78,7 +78,7 @@ export interface IMessageOptions {
 function destroy () {
   if (instance && container) {
     ReactDOM.unmountComponentAtNode(container)
-    OverlayManager.remove(container)
+    overlayUtil.remove(container)
     instance = null
     container = null
   }
@@ -86,7 +86,7 @@ function destroy () {
 
 export function message (options: IMessageOptions) {
   if (!instance) {
-    container = OverlayManager.create()
+    container = overlayUtil.create()
     instance = ReactDOM.render(
       React.createElement(MessageGroup, {onEmpty: destroy}),
       container

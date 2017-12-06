@@ -2,7 +2,7 @@ import './List.less'
 
 import * as React from 'react'
 
-import Base, {SizeType} from '../../libs/Base'
+import Base, {SizeType} from '../../common/Base'
 import ListItem from './ListItem'
 
 export interface IListProps {

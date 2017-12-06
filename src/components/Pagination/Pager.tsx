@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 import PaginationItem from './PaginationItem'
 
 export interface IPagerProps {

@@ -2,7 +2,7 @@ import './ScrollBar.less'
 
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 
 export interface IPoint {
   x: number

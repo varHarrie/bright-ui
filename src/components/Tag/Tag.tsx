@@ -2,7 +2,7 @@ import './Tag.less'
 
 import * as React from 'react'
 
-import Base, {RadiusType, SizeType, TagColorType} from '../../libs/Base'
+import Base, {RadiusType, SizeType, TagColorType} from '../../common/Base'
 
 const presetColors = ['gray', 'primary', 'success', 'warning', 'danger']
 

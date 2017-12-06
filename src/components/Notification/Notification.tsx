@@ -2,8 +2,8 @@ import './Notification.less'
 
 import * as React from 'react'
 
-import Base, {NotificationType} from '../../libs/Base'
-import HeightTransition from '../../libs/Transitions/HeightTransition'
+import Base, {NotificationType} from '../../common/Base'
+import HeightTransition from '../../common/Transitions/HeightTransition'
 import Icon from '../Icon'
 
 const iconMap = {

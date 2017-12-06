@@ -2,7 +2,7 @@ import './Icon.less'
 
 import * as React from 'react'
 
-import Base, {IconColorType} from '../../libs/Base'
+import Base, {IconColorType} from '../../common/Base'
 import * as cn from 'classnames'
 
 const colors = ['normal', 'gray', 'primary', 'success', 'warning', 'danger']

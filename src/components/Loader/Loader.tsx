@@ -2,7 +2,7 @@ import './Loader.less'
 
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 
 export interface ILoaderProps {
   text?: string

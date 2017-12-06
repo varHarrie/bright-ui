@@ -2,7 +2,7 @@ import './Pagination.less'
 
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 import Goto from './Goto'
 import Next from './Next'
 import Pager from './Pager'

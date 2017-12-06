@@ -2,7 +2,7 @@ import './Checkbox.less'
 
 import * as React from 'react'
 
-import Base, {SizeType} from '../../libs/Base'
+import Base, {SizeType} from '../../common/Base'
 
 export interface ICheckboxProps {
   checked?: boolean

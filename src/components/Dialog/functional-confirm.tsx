@@ -1,8 +1,8 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import Base, {SizeType} from '../../libs/Base'
-import * as OverlayManager from '../../libs/overlay-manager'
+import Base, {SizeType} from '../../common/Base'
+import * as overlayUtil from '../../utils/overlay'
 import Confirm from './Confirm'
 
 export interface IConfirmOptions {
@@ -64,13 +64,13 @@ class ConfirmWrap extends Base<IConfirmWrapProps, IConfirmWrapState> {
 }
 
 export default function confirm (options: IConfirmOptions) {
-  let container: any = OverlayManager.create()
+  let container: any = overlayUtil.create()
 
   const onHide = function () {
     setTimeout(() => {
       if (container) {
         ReactDOM.unmountComponentAtNode(container)
-        OverlayManager.remove(container)
+        overlayUtil.remove(container)
         container = null
       }
     })

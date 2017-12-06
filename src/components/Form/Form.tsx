@@ -3,7 +3,7 @@ import './Form.less'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 import FormField from './FormField'
 import FormStore, {IValidationError, IValidationMap, IValueMap} from './FormStore'
 

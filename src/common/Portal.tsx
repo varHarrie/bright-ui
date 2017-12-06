@@ -1,6 +1,6 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
-import * as OverlayManager from './overlay-manager'
+import * as overlayUtil from '../utils//overlay'
 
 export interface IPortalProps {
   container?: HTMLElement | (() => HTMLElement)
@@ -19,12 +19,12 @@ export default class Portal extends React.Component<IPortalProps> {
     const container = this.props.container
     this.container = typeof container === 'function'
       ? container()
-      : container || OverlayManager.create()
+      : container || overlayUtil.create()
   }
 
   componentWillUnmount () {
     if (this.container && this.props.autoDestroy) {
-      OverlayManager.remove(this.container)
+      overlayUtil.remove(this.container)
       this.container = null as any
     }
   }

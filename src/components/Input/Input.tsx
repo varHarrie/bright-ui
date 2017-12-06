@@ -2,7 +2,7 @@ import './Input.less'
 
 import * as React from 'react'
 
-import Base, {RadiusType} from '../../libs/Base'
+import Base, {RadiusType} from '../../common/Base'
 import Icon from '../Icon'
 
 export interface IInputProps {

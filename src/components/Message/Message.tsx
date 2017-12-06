@@ -2,8 +2,8 @@ import './Message.less'
 
 import * as React from 'react'
 
-import Base, {MessageType} from '../../libs/Base'
-import HeightTransition from '../../libs/Transitions/HeightTransition'
+import Base, {MessageType} from '../../common/Base'
+import HeightTransition from '../../common/Transitions/HeightTransition'
 import Icon from '../Icon'
 import {danger, info, message, success, warning} from './functional-message'
 

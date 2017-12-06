@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import * as utils from '../../libs/utils'
+import * as domUtil from '../../utils/dom'
 import BaseTransition, {IOriginalTransitionProps} from './BaseTransition'
 
 export interface IHeightTransitionProps extends IOriginalTransitionProps {
@@ -24,11 +24,11 @@ export default class HeightTransition extends React.Component<IHeightTransitionP
 
   getOriginalStyle = (el: HTMLElement) => {
     return {
-      'height': utils.getStyle(el, 'height'),
-      'paddingTop': utils.getStyle(el, 'padding-top'),
-      'paddingBottom': utils.getStyle(el, 'padding-bottom'),
-      'marginTop': utils.getStyle(el, 'margin-top'),
-      'marginBottom': utils.getStyle(el, 'margin-bottom')
+      'height': domUtil.getStyle(el, 'height'),
+      'paddingTop': domUtil.getStyle(el, 'padding-top'),
+      'paddingBottom': domUtil.getStyle(el, 'padding-bottom'),
+      'marginTop': domUtil.getStyle(el, 'margin-top'),
+      'marginBottom': domUtil.getStyle(el, 'margin-bottom')
     }
   }
 

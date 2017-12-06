@@ -3,7 +3,7 @@ import './Mask.less'
 import * as React from 'react'
 import * as CSSTransition from 'react-transition-group/CSSTransition'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 
 export interface IMaskProps {
   onClick?: React.MouseEventHandler<HTMLDivElement>

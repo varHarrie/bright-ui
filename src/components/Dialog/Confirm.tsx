@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Base, {SizeType} from '../../libs/Base'
+import Base, {SizeType} from '../../common/Base'
 import Icon from '../Icon'
 import Dialog from './Dialog'
 

@@ -2,7 +2,7 @@ import './TimePicker.less'
 
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 import Input from '../Input'
 import Popover from '../Popover/Popover'
 import ScrollBar from '../ScrollBar/'

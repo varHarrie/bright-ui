@@ -1,8 +1,8 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
-import Base from '../../libs/Base'
-import * as utils from '../../libs/utils'
+import Base from '../../common/Base'
+import * as commonUtil from '../../utils/common'
 import Form from './Form'
 import {IValidationError} from './FormStore'
 
@@ -35,7 +35,7 @@ export default class FormField extends Base<IFormFieldProps, IFormStateProps> {
   name: string
   $form: Form
 
-  validateWithDebounce = utils.debounce(() => this.validate(), 300)
+  validateWithDebounce = commonUtil.debounce(() => this.validate(), 300)
   
   constructor (props: IFormFieldProps, context: any) {
     super(props)

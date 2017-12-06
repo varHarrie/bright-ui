@@ -2,7 +2,7 @@ import './Button.less'
 
 import * as React from 'react'
 
-import Base, {RadiusType, ButtonColorType} from '../../libs/Base'
+import Base, {RadiusType, ButtonColorType} from '../../common/Base'
 import Icon from '../Icon'
 import ButtonGroup from './ButtonGroup'
 

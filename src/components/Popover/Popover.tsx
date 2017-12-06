@@ -2,9 +2,9 @@ import './Popover.less'
 
 import * as React from 'react'
 
-import Base from '../../libs/Base'
+import Base from '../../common/Base'
 import BasePopover,
-{IBasePopoverProps} from '../../libs/BasePopover'
+{IBasePopoverProps} from '../../common/BasePopover'
 
 export interface IPopoverProps extends IBasePopoverProps {
   title?: React.ReactNode
