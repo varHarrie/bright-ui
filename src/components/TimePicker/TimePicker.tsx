@@ -2,7 +2,7 @@ import './TimePicker.less'
 
 import * as React from 'react'
 
-import Base from '../../common/Base'
+import Base, {SizeType} from '../../common/Base'
 import * as dateUtil from '../../utils//date'
 import Input from '../Input'
 import Popover from '../Popover/Popover'
@@ -12,14 +12,17 @@ export type TimeType = {hours?: number, minutes?: number, seconds?: number}
 export type ValueType = Date | string | TimeType | null
 
 export interface ITimePickerProps {
+  icon?: string
   value?: ValueType
   format?: string
+  placeholder?: string
   disabled?: boolean
   full?: boolean
+  size?: SizeType
   onChange?: (value: string, values?: TimeType | null) => void
+  onKeyDown?: React.FormEventHandler<any>
   onFocus?: React.FormEventHandler<any>
   onBlur?: React.FormEventHandler<any>
-  onKeyDown?: React.FormEventHandler<any>
 }
 
 export interface ITimePickerState {
@@ -31,6 +34,7 @@ export interface ITimePickerState {
 export default class TimePicker extends Base <ITimePickerProps, ITimePickerState> {
 
   static defaultProps = {
+    icon: 'clock-o',
     format: 'HH:mm:ss'
   }
 
@@ -133,22 +137,14 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
   }
 
   render () {
-    const {full, disabled, onKeyDown, onFocus, onBlur} = this.props
+    const {icon, placeholder, full, size, disabled, onKeyDown, onFocus, onBlur} = this.props
     const {visible, value, values} = this.state
     const {hours = undefined, minutes = undefined, seconds = undefined} = values || {}
-
-    const className = this.className(
-      'bui-time-picker',
-      {
-        'bui-time-picker--full': full,
-        'bui-time-picker--disabled': disabled
-      }
-    )
 
     return (
       <Popover
         narrow
-        visible={visible}
+        visible={!disabled && visible}
         trigger='focus'
         placement='bottom'
         showArrow={false}
@@ -162,9 +158,13 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
           </div>
         )}>
         <Input
-          className={className}
+          className={this.className('bui-time-picker')}
           style={this.style()}
-          suffix='clock-o'
+          full={full}
+          size={size}
+          disabled={disabled}
+          suffix={icon}
+          placeholder={placeholder}
           onChange={this.onValueChangeFromInput}
           onKeyDown={onKeyDown}
           onFocus={onFocus}
