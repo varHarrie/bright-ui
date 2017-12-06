@@ -1,12 +1,12 @@
 import * as stringUtil from './string'
 
-export const tokenRegexp = /Y+|M+|d+|H+|m+|s+|./g
+export const tokenRegexp = /Y+|M+|D+|H+|m+|s+|./g
 
-export const defaultDateFormat = 'YYYY-MM-dd'
+export const defaultDateFormat = 'YYYY-MM-DD'
 
 export const defaultTimeFormat = 'HH:mm:ss'
 
-export const defaultDatetimeFormat = 'YYYY-MM-dd HH:mm:ss'
+export const defaultDatetimeFormat = 'YYYY-MM-DD HH:mm:ss'
 
 const parsers = {
   'Y': {
@@ -17,7 +17,7 @@ const parsers = {
     match: /^(1[0-2]|0?[1-9])/,
     unit: 'months'
   },
-  'd': {
+  'D': {
     match: /^(\d{1,2})/,
     unit: 'dates'
   },
@@ -44,11 +44,24 @@ export type DatetimeType = {
   seconds?: number
 }
 
+const defaultAttrs = {years: true, months: true, dates: true}
+
+export function parseFromDate (date: Date, attrs: {[name: string]: boolean} = defaultAttrs) {
+  return {
+    years: date.getFullYear(),
+    months: date.getMonth() + 1,
+    dates: date.getDate(),
+    hours: date.getHours(),
+    minutes: date.getMinutes(),
+    seconds: date.getSeconds()
+  }
+}
+
 export function parse (dirtyString: string, format: string = defaultDatetimeFormat) {
+  const data: DatetimeType = {}
+
   const tokens = format.match(tokenRegexp) || []
   const tokensLength = tokens.length
-
-  const data: DatetimeType = {}
 
   for (let i = 0; i < tokensLength; i++) {
     const token = tokens[i]
@@ -68,15 +81,28 @@ export function parse (dirtyString: string, format: string = defaultDatetimeForm
   return data
 }
 
-export function stringify (data: DatetimeType = {}, format: string = defaultDatetimeFormat) {
-  const {hours = 0, minutes = 0, seconds = 0} = data
-  const temp = {'H': hours, 'm': minutes, 's': seconds}
+export function stringify (data: Date | DatetimeType = {}, format: string = defaultDatetimeFormat) {
+  const details = data instanceof Date ? parseFromDate(data) : data
 
   return format.replace(tokenRegexp, (token) => {
-    const value = temp[token[0]]
+    const value = parsers[token[0]] && details[parsers[token[0]].unit]
 
     return value === undefined
       ? token
       : stringUtil.padStart(value, token.length, '0')
   })
+}
+
+export function toDate (data: DatetimeType) {
+  const date = new Date()
+
+  if (data.years) date.setFullYear(data.years)
+  if (data.months) date.setMonth(data.months - 1)
+  if (data.dates) date.setDate(data.dates)
+
+  if (data.hours) date.setHours(data.hours)
+  if (data.minutes) date.setMinutes(data.minutes)
+  if (data.seconds) date.setSeconds(data.seconds)
+
+  return date
 }
