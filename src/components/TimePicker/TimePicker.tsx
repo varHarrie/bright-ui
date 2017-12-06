@@ -3,96 +3,68 @@ import './TimePicker.less'
 import * as React from 'react'
 
 import Base from '../../common/Base'
+import * as dateUtil from '../../utils//date'
 import Input from '../Input'
 import Popover from '../Popover/Popover'
-import ScrollBar from '../ScrollBar/'
-import * as utils from './utils'
-import * as cn from 'classnames'
+import CellList from './CellList'
 
-export type ValueType = Date | string | {hours?: number, minutes?: number, seconds?: number}
+export type TimeType = {hours?: number, minutes?: number, seconds?: number}
+export type ValueType = Date | string | TimeType | null
 
 export interface ITimePickerProps {
   value?: ValueType
   format?: string
   disabled?: boolean
   full?: boolean
-  onChange?: (value: string, hours: number, minutes: number, seconds: number) => void
-  onFocus?: React.FormEventHandler<any>
-  onBlur?: React.FormEventHandler<any>
+  onChange?: (value: string, values?: TimeType | null) => void
   onKeyDown?: React.FormEventHandler<any>
 }
 
 export interface ITimePickerState {
   visible: boolean
-  hours: number
-  minutes: number
-  seconds: number
+  value: string
+  values?: TimeType | null
 }
 
 export default class TimePicker extends Base <ITimePickerProps, ITimePickerState> {
+
   static defaultProps = {
-    value: {hours: 0, minutes: 0, seconds: 0},
     format: 'HH:mm:ss'
   }
 
-  scrollBars: any = {
-    visible: false,
-    hours: {},
-    minutes: {},
-    seconds: {}
-  }
+  hoursVisible: boolean
+  minutesVisible: boolean
+  secondsVisible: boolean
 
   constructor (props: ITimePickerProps) {
     super(props)
 
-    const {value, format} = props as any
-    const values = this.parseFromValue(value || {})
+    const format = props.format as string
 
-    this.scrollBars.hours.visible = format.indexOf('H') > -1
-    this.scrollBars.minutes.visible = format.indexOf('m') > -1
-    this.scrollBars.seconds.visible = format.indexOf('s') > -1
+    this.hoursVisible = format.indexOf('H') > -1
+    this.minutesVisible = format.indexOf('m') > -1
+    this.secondsVisible = format.indexOf('s') > -1
+
+    const values = this.parse(props.value)
 
     this.state = {
       visible: false,
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-      ...values
+      value: this.stringify(values),
+      values
     }
   }
 
   componentWillReceiveProps ({value}: ITimePickerProps) {
-    if (value !== this.props.value) {
+    if (value !== this.state.value || value !== this.state.values) {
+      const values = this.parse(value)
       this.setState({
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-        ...this.parseFromValue(value || {})
+        value: this.stringify(values),
+        values
       })
     }
   }
 
-  componentDidUpdate (prevProps: ITimePickerProps, prevState: ITimePickerState) {
-    const {visible} = this.state
-
-    if (visible && !prevState.visible) {
-      const {hours: hoursBar, minutes: minutesBar, seconds: secondsBar} = this.scrollBars
-      const {hours, minutes, seconds} = this.state
-      const HEIGHT = 24 // todo: 通过ref动态获取高度
-
-      if (hoursBar.el) {
-        hoursBar.el.scrollTo(hours * HEIGHT)
-      }
-      if (minutesBar.el) {
-        minutesBar.el.scrollTo(minutes * HEIGHT)
-      }
-      if (secondsBar.el) {
-        secondsBar.el.scrollTo(seconds * HEIGHT)
-      }
-    }
-  }
-
-  parseFromValue = (value: ValueType) => {
+  parse = (value?: ValueType) => {
     if (value instanceof Date) {
       return {
         hours: value.getHours(),
@@ -100,78 +72,68 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
         seconds: value.getSeconds()
       }
     } else if (typeof value === 'string') {
-      return utils.parse(value, this.props.format) || {}
+      return dateUtil.parse(value, this.props.format)
     }
-    
+
     return value
   }
 
-  isCellSelected = (name: string, value: number) => {
-    return this.state[name] === value
+  stringify = (values?: TimeType | null) => {
+    return values && (
+        values.hours !== undefined ||
+        values.minutes !== undefined ||
+        values.seconds !== undefined
+      )
+        ? dateUtil.stringify(values, this.props.format)
+        : ''
+  }
+
+  updateValue = (values?: TimeType | null) => {
+    const oldValues = this.parse(this.state.value)
+    const newValues = {
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
+      ...oldValues,
+      ...values
+    }
+    this.setState({
+      value: this.stringify(newValues),
+      values: newValues
+    }, () => {
+      const onChange = Base.action(this.props.onChange)
+      onChange(this.state.value, this.state.values)
+    })
   }
 
   onVisibleChange = (visible: boolean) => {
     this.setState({visible})
+
+    if (!visible) {
+      this.updateValue(this.state.values)
+    }
   }
 
-  onUpdateValue = (name: string, el: HTMLDivElement) => {
-    const num = el.getAttribute('data-num')
-    this.scrollBars[name].el.scrollTo(el.offsetTop)
-    this.setState({[name]: Number(num)} as any, () => {
-      const onChange = Base.action(this.props.onChange)
-      const {hours, minutes, seconds} = this.state
-      const {format} = this.props
-      const value = utils.stringify({hours, minutes, seconds}, format)
-      onChange(value, hours, minutes, seconds)
-    })
+  onValueChangeFromInput = (e: any, value: string) => {
+    this.setState({value})
   }
 
-  onUpdateHours = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    this.onUpdateValue('hours', e.target as HTMLDivElement)
+  onHoursChange = (hours: number) => {
+    this.updateValue({hours})
   }
 
-  onUpdateMinutes = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    this.onUpdateValue('minutes', e.target as HTMLDivElement)
+  onMinutesChange = (minutes: number) => {
+    this.updateValue({minutes})
   }
 
-  onUpdateSeconds = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault()
-    this.onUpdateValue('seconds', e.target as HTMLDivElement)
-  }
-
-  renderCells = (name: string, num: number, onClick: any) => {
-    const cells = Array(num).fill('0')
-
-    return (
-      <ScrollBar
-        className='bui-time-picker__cells'
-        ref={(el: any) => this.scrollBars[name].el = el}
-        scrollStep={72}
-      >
-        {cells.map((_, i) => (
-          <div
-            key={i}
-            className={
-              cn(
-                'bui-time-picker__cell',
-                {'bui-time-picker__cell--selected': this.isCellSelected(name, i)}
-              )
-            }
-            data-num={i}
-            onClick={onClick}
-          >
-            {utils.padStart(i, 2)}
-          </div>
-        ))}
-      </ScrollBar>
-    )
+  onSecondsChange = (seconds: number) => {
+    this.updateValue({seconds})
   }
 
   render () {
-    const {format, full, disabled, onFocus, onBlur, onKeyDown} = this.props
-    const {visible, hours, minutes, seconds} = this.state
+    const {full, disabled, onKeyDown} = this.props
+    const {visible, value, values} = this.state
+    const {hours = undefined, minutes = undefined, seconds = undefined} = values || {}
 
     const className = this.className(
       'bui-time-picker',
@@ -180,8 +142,6 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
         'bui-time-picker--disabled': disabled
       }
     )
-
-    const value: string = utils.stringify({hours, minutes, seconds}, format)
 
     return (
       <Popover
@@ -194,17 +154,16 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
         onChange={this.onVisibleChange}
         content={(
           <div className='bui-time-picker__popover'>
-            {this.scrollBars.hours.visible && this.renderCells('hours', 24, this.onUpdateHours)}
-            {this.scrollBars.minutes.visible && this.renderCells('minutes', 60, this.onUpdateMinutes)}
-            {this.scrollBars.seconds.visible && this.renderCells('seconds', 60, this.onUpdateSeconds)}
+            {this.hoursVisible && <CellList count={24} selectedNum={hours} onChange={this.onHoursChange}/>}
+            {this.minutesVisible && <CellList count={60} selectedNum={minutes} onChange={this.onMinutesChange}/>}
+            {this.secondsVisible && <CellList count={60} selectedNum={seconds} onChange={this.onSecondsChange}/>}
           </div>
         )}>
         <Input
           className={className}
           style={this.style()}
           suffix='clock-o'
-          onFocus={onFocus}
-          onBlur={onBlur}
+          onChange={this.onValueChangeFromInput}
           onKeyDown={onKeyDown}
           value={value}/>
       </Popover>
