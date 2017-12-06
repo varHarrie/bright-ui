@@ -29,8 +29,18 @@ export default class CellList extends React.Component<ICellListProps, ICellListS
     this.cells = Array(realCount).fill(0).map((_, i) => i * realStep)
   }
 
+  componentWillReceiveProps (nextProps: ICellListProps) {
+    if (this.$scrollBar) {
+      this.$scrollBar.scrollTo(24 * (nextProps.selectedNum || 0))
+    }
+  }
+
   saveScrollBar = (el: any) => {
     this.$scrollBar = el
+
+    if (el) {
+      el.scrollTo(24 * (this.props.selectedNum || 0))
+    }
   }
 
   onChange = (e: any, num: number) => {

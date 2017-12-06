@@ -17,6 +17,8 @@ export interface ITimePickerProps {
   disabled?: boolean
   full?: boolean
   onChange?: (value: string, values?: TimeType | null) => void
+  onFocus?: React.FormEventHandler<any>
+  onBlur?: React.FormEventHandler<any>
   onKeyDown?: React.FormEventHandler<any>
 }
 
@@ -109,8 +111,8 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
   onVisibleChange = (visible: boolean) => {
     this.setState({visible})
 
-    if (!visible) {
-      this.updateValue(this.state.values)
+    if (!visible && this.state.value) {
+      this.updateValue()
     }
   }
 
@@ -131,7 +133,7 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
   }
 
   render () {
-    const {full, disabled, onKeyDown} = this.props
+    const {full, disabled, onKeyDown, onFocus, onBlur} = this.props
     const {visible, value, values} = this.state
     const {hours = undefined, minutes = undefined, seconds = undefined} = values || {}
 
@@ -165,6 +167,8 @@ export default class TimePicker extends Base <ITimePickerProps, ITimePickerState
           suffix='clock-o'
           onChange={this.onValueChangeFromInput}
           onKeyDown={onKeyDown}
+          onFocus={onFocus}
+          onBlur={onBlur}
           value={value}/>
       </Popover>
     )
