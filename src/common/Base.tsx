@@ -9,6 +9,12 @@ export function action <T extends Function> (func?: T): T {
   return func || noop as any
 }
 
+export function actions <T extends Function> (...funcs: T[]): T {
+  return ((...args: any[]) => {
+    funcs.map(action).forEach((func) => func(...args))
+  }) as any
+}
+
 export function promiseAction <T extends Function> (func?: T) {
   const f: any = func || noop
 
@@ -38,6 +44,8 @@ export interface IBaseProps {
 
 export default abstract class Base<P = {}, S = {}> extends React.Component<P & IBaseProps, S> {
   static action = action
+
+  static actions = actions
 
   static promiseAction = promiseAction
 

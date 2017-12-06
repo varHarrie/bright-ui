@@ -97,18 +97,25 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
       : children
   }
 
-  getEvents = () => {
+  getEvents = (children: React.SFCElement<any>) => {
     const trigger = this.props.trigger
+    const props = children.props || {}
 
     switch (trigger) {
       case 'click':
-        return {onClick: this.onToggle}
+        return {onClick: Base.actions(props.onClick, this.onToggle)}
 
       case 'hover':
-        return {onMouseEnter: this.onShow, onMouseLeave: this.onDelayedHide}
+        return {
+          onMouseEnter: Base.actions(props.onMouseEnter, this.onShow),
+          onMouseLeave: Base.actions(props.onMouseLeave, this.onDelayedHide)
+        }
 
       case 'focus':
-        return {onFocus: this.onShow, onBlur: this.onHide}
+        return {
+          onFocus: Base.actions(props.onFocus, this.onShow),
+          onBlur: Base.actions(props.onBlur, this.onHide)
+        }
 
       default:
     }
@@ -189,12 +196,14 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
       return null
     }
 
+    const realChildren = this.ensureElement(children)
+
     const target = React.cloneElement(
-      this.ensureElement(children),
+      realChildren,
       {
         key: 'target',
         ref: this.saveTarget,
-        ...this.getEvents()
+        ...this.getEvents(realChildren)
       }
     )
 
