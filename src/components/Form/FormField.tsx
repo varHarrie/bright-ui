@@ -47,13 +47,14 @@ export default class FormField extends Base<IFormFieldProps, IFormStateProps> {
     const {name, value} = props
     const {$form} = context
 
+    this.$form = $form
+
     if (name && $form) {
       if (value === undefined) {
         console.warn(`Warning: Form field '${name}' should provide a value, but got undefined.`)
       }
 
       this.name = name
-      this.$form = $form
 
       $form.$fields.push(this)
       $form.set(name, value)
@@ -89,7 +90,7 @@ export default class FormField extends Base<IFormFieldProps, IFormStateProps> {
 
     const name = this.name
     const error = this.state.error
-    const value = this.$form ? this.$form.get(name) : undefined
+    const value = (this.$form && name) ? this.$form.get(name) : undefined
 
     return children({
       name,
