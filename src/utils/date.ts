@@ -96,13 +96,17 @@ export function stringify (data: Date | DatetimeType = {}, format: string = defa
 export function toDate (data: DatetimeType) {
   const date = new Date()
 
-  if (data.years) date.setFullYear(data.years)
-  if (data.months) date.setMonth(data.months - 1)
-  if (data.dates) date.setDate(data.dates)
+  if (data.years !== undefined) date.setFullYear(data.years)
+  if (data.months !== undefined) date.setMonth(data.months - 1)
+  if (data.dates !== undefined) date.setDate(data.dates)
 
-  if (data.hours) date.setHours(data.hours)
-  if (data.minutes) date.setMinutes(data.minutes)
-  if (data.seconds) date.setSeconds(data.seconds)
+  if (data.hours !== undefined) date.setHours(data.hours)
+  if (data.minutes !== undefined) date.setMinutes(data.minutes)
+  if (data.seconds !== undefined) date.setSeconds(data.seconds)
 
   return date
+}
+
+export function copyOrCreate (date: Date | null | undefined, defaultOptions?: DatetimeType) {
+  return date ? new Date(date) : toDate(defaultOptions || {})
 }

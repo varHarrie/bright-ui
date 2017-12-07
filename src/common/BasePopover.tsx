@@ -1,7 +1,9 @@
 import Popper from 'popper.js'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
+import * as stringUtil from '../utils/string'
 import Base, {PopoverPlacementType, PopoverTriggerType} from './Base'
 import Portal from './Portal'
 import OpacityTransition from './Transitions/OpacityTransition'
@@ -27,16 +29,31 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
     trigger: 'click'
   }
 
+  static childContextTypes = {
+    $popover: PropTypes.any
+  }
+
+  static contextTypes = {
+    $popover: PropTypes.any
+  }
+
   state = {
     visible: false,
     portalVisible: false
   }
 
+  id: string = stringUtil.randomKey()
   $target: Element | null
   $popper: Element | null
   instance: Popper | null
 
   hideTimer: number
+
+  getChildContext = () => {
+    return {
+      $popover: this as any
+    }
+  }
 
   componentDidMount () {
     super.componentDidMount()
@@ -44,6 +61,7 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
   }
 
   componentWillReceiveProps ({visible}: IBasePopoverProps) {
+    this.clearHideTimer()
     this.updateVisible(visible, true)
   }
 
@@ -103,18 +121,18 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
 
     switch (trigger) {
       case 'click':
-        return {onClick: Base.actions(props.onClick, this.onToggle)}
+        return {onClick: Base.actions(this.onToggle, props.onClick)}
 
       case 'hover':
         return {
-          onMouseEnter: Base.actions(props.onMouseEnter, this.onShow),
-          onMouseLeave: Base.actions(props.onMouseLeave, this.onDelayedHide)
+          onMouseEnter: Base.actions(this.onShow, props.onMouseEnter),
+          onMouseLeave: Base.actions(this.onDelayedHide, props.onMouseLeave)
         }
 
       case 'focus':
         return {
-          onFocus: Base.actions(props.onFocus, this.onShow),
-          onBlur: Base.actions(props.onBlur, this.onHide)
+          onFocus: Base.actions(this.onShow, props.onFocus),
+          onBlur: Base.actions(this.onDelayedHide, props.onBlur)
         }
 
       default:
@@ -130,6 +148,14 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
     }
   }
 
+  onMouseDownInside = (e: React.MouseEvent<any>) => {
+    const target: any = e.target
+
+    if (target && target.focus) {
+      target.focus()
+    }
+  }
+
   onClickOutside = (e: MouseEvent) => {
     const el = e.target as any
     const {$target, $popper} = this
@@ -139,6 +165,14 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
     }
 
     if ($target.contains(el) || $popper.contains(el)) {
+      return
+    }
+
+    // 嵌套检测，目前仅实现两层
+    const popper = el.closest('[data-popover-parent-id]')
+    const parentId = popper && popper.getAttribute('data-popover-parent-id')
+
+    if (parentId === this.id) {
       return
     }
 
@@ -196,6 +230,9 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
       return null
     }
 
+    const id = this.id
+    const parentId = this.context.$popover && this.context.$popover.id
+
     const realChildren = this.ensureElement(children)
 
     const target = React.cloneElement(
@@ -212,7 +249,8 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
       {
         ref: this.refPopper,
         onMouseEnter: this.clearHideTimer,
-        onMouseLeave: this.onHideIfNeeded
+        onMouseLeave: this.onHideIfNeeded,
+        onMouseDown: this.onMouseDownInside
       }
     )
 
@@ -221,7 +259,9 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
         <OpacityTransition
           in={visible}
           onExited={this.onHidePortal}>
-          <div>{popper}</div>
+          <div
+            data-popover-id={id}
+            data-popover-parent-id={parentId}>{popper}</div>
         </OpacityTransition>
       </Portal>
     )
