@@ -115,7 +115,7 @@ export function open (options: INotificationOptions) {
   }
 
   if (rest.duration === undefined) {
-    rest.duration = 3000
+    rest.duration = 5000
   }
 
   if (rest.closable === undefined) {
