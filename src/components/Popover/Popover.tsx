@@ -3,8 +3,8 @@ import './Popover.less'
 import * as React from 'react'
 
 import Base from '../../common/Base'
-import BasePopover,
-{IBasePopoverProps} from '../../common/BasePopover'
+import BasePopover, {IBasePopoverProps} from '../../common/BasePopover'
+import PopoverConfirm from './PopoverConfirm'
 
 export interface IPopoverProps extends IBasePopoverProps {
   title?: React.ReactNode
@@ -19,6 +19,8 @@ export interface IPopoverProps extends IBasePopoverProps {
 export interface IPopoverState {}
 
 export default class Popover extends Base<IPopoverProps, IPopoverState> {
+
+  static Confirm = PopoverConfirm
 
   render () {
     const {
