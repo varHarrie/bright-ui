@@ -1,0 +1,67 @@
+@import "../../styles/import";
+
+.bui-input-group {
+  &__header,
+  &__footer {
+    padding: 0 @input-group-padding-h;
+    display: flex;
+    flex: none;
+    align-items: center;
+    line-height: 1em;
+    border-radius: @input-group-border-radius;
+    background: @input-group-fill;
+    box-shadow:
+      outside-shadow(@input-group-border-color),
+      border-shadow(@input-group-border-color, 0%);
+  }
+
+  .bui-input {
+    input:focus {
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  .bui-button {
+    position: relative;
+    z-index: 1;
+  }
+
+  &&--full {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .bui-input,
+    .bui-button {
+      flex: 1;
+    }
+  }
+
+  .bui-input,
+  .bui-button,
+  &__header,
+  &__footer {
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &:last-child {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+
+    &:not(:first-child) {
+      margin-left: -1px !important;
+    }
+  }
+}
+
+.input-group-text {
+  
+}

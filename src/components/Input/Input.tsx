@@ -4,6 +4,7 @@ import * as React from 'react'
 
 import Base, {RadiusType} from '../../common/Base'
 import Icon from '../Icon'
+import InputGroup from './InputGroup'
 
 export interface IInputProps {
   size?: 'small' | 'normal' | 'large'
@@ -24,6 +25,8 @@ export interface IInputProps {
 }
 
 export default class Input extends Base<IInputProps> {
+
+  static Group = InputGroup
 
   static defaultProps = {
     type: 'text',

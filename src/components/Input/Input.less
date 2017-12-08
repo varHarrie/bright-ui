@@ -36,14 +36,17 @@
 .bui-input {
   display: inline-block;
   position: relative;
+  border-radius: @input-border-radius;
+  text-align: left;
 
   &__original {
     width: 100%;
     box-sizing: border-box;
     appearance: none;
     outline: none;
-    border-radius: @input-border-radius;
+    text-align: inherit;
     border: none;
+    border-radius: inherit;
     box-shadow:
       outside-shadow(@input-border-color),
       border-shadow(@input-border-color, 0%);
@@ -70,6 +73,7 @@
   &__prefix,
   &__suffix {
     position: absolute;
+    z-index: 2;
     top: 50%;
     transform: translateY(-50%);
     line-height: 0;
@@ -87,6 +91,7 @@
 
   &&--disabled &__original {
     background: @input-disabled-fill;
+    color: @input-disabled-color;
     box-shadow:
       outside-shadow(@input-border-color),
       border-shadow(@input-border-color, 0%) !important;
