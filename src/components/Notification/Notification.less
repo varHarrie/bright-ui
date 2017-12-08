@@ -17,7 +17,8 @@
   border-radius: @notification-border-radius;
   background: @notification-fill;
   overflow: hidden;
-  min-width: 200px;
+  min-width: 300px;
+  max-width: 100%;
 
   &__close {
     position: absolute;
@@ -70,4 +71,59 @@
   .notification-type(success, @message-success-color);
   .notification-type(warning, @message-warning-color);
   .notification-type(danger, @message-danger-color);
+}
+
+.bui-notification-group {
+  position: fixed;
+  z-index: 30;
+
+  &&--top-left {
+    top: 0;
+    left: 10px;
+  }
+
+  &&--top-right {
+    top: 0;
+    right: 10px;
+  }
+
+  &&--bottom-left {
+    bottom: 10px;
+    left: 10px;
+  }
+
+  &&--bottom-right {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .bui-notification {
+    display: inline-flex;
+  }
+
+  &__item {
+    margin-top: @notification-margin-top;
+
+    &-enter {
+      opacity: 0.01;
+      margin-top: 0;
+  
+      &&-active {
+        opacity: 1;
+        margin-top: 10px;
+        transition: all 0.3s;
+      }
+    }
+  
+    &-exit {
+      opacity: 1;
+      margin-top: 10px;
+  
+      &&-active {
+        opacity: 0;
+        margin-top: 0;
+        transition: all 0.3s;
+      }
+    }
+  }
 }

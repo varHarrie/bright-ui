@@ -5,6 +5,7 @@ import * as React from 'react'
 import Base, {NotificationType} from '../../common/Base'
 import HeightTransition from '../../common/Transitions/HeightTransition'
 import Icon from '../Icon'
+import {danger, info, open, success, warning} from './functional-notification'
 
 const iconMap = {
   primary: 'info-circle',
@@ -29,6 +30,16 @@ export interface INotificationState {
 }
 
 export default class Notification extends Base<INotificationProps, INotificationState> {
+
+  static normal = open
+  
+  static info = info
+
+  static success = success
+
+  static warning = warning
+
+  static danger = danger
 
   timer: number
 

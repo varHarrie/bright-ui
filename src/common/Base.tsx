@@ -92,6 +92,8 @@ export type MessageType = 'primary' | 'success' | 'warning' | 'danger'
 
 export type NotificationType = 'primary' | 'success' | 'warning' | 'danger'
 
+export type NotificationPlacement = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+
 export type PopoverTriggerType = 'click' | 'hover' | 'focus'
 
 export type PopoverPlacementType =
