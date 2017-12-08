@@ -5,7 +5,7 @@ import * as React from 'react'
 import Base, {MessageType} from '../../common/Base'
 import HeightTransition from '../../common/Transitions/HeightTransition'
 import Icon from '../Icon'
-import {danger, info, message, success, warning} from './functional-message'
+import {danger, info, open, success, warning} from './functional-message'
 
 const iconMap = {
   primary: 'info',
@@ -31,7 +31,7 @@ export interface IMessageState {
 
 export default class Message extends Base<IMessageProps, IMessageState> {
 
-  static normal = message
+  static normal = open
 
   static info = info
 

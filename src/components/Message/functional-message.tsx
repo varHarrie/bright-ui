@@ -84,7 +84,7 @@ function destroy () {
   }
 }
 
-export function message (options: IMessageOptions) {
+export function open (options: IMessageOptions) {
   if (!instance) {
     container = overlayUtil.create()
     instance = ReactDOM.render(
@@ -105,17 +105,17 @@ export function message (options: IMessageOptions) {
 }
 
 export function info (content: string, duration?: number, closable?: boolean) {
-  return message({type: 'primary', content, duration, closable})
+  return open({type: 'primary', content, duration, closable})
 }
 
 export function success (content: string, duration?: number, closable?: boolean) {
-  return message({type: 'success', content, duration, closable})
+  return open({type: 'success', content, duration, closable})
 }
 
 export function warning (content: string, duration?: number, closable?: boolean) {
-  return message({type: 'warning', content, duration, closable})
+  return open({type: 'warning', content, duration, closable})
 }
 
 export function danger (content: string, duration?: number, closable?: boolean) {
-  return message({type: 'danger', content, duration, closable})
+  return open({type: 'danger', content, duration, closable})
 }
