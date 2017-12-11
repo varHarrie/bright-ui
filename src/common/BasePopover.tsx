@@ -14,6 +14,8 @@ export interface IBasePopoverProps {
   trigger?: PopoverTriggerType
   placement?: PopoverPlacementType
   content?: React.ReactNode
+  modifiers?: any
+  refTarget?: (el: Element | null) => void
   onChange?: (visible: boolean) => void
 }
 
@@ -88,10 +90,13 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
     this.$target = $target
       ? ReactDOM.findDOMNode($target)
       : null
+
+    const refTarget = Base.action(this.props.refTarget)
+    refTarget(this.$target)
   }
 
   refPopper = ($popper: any) => {
-    const {placement} = this.props
+    const {placement, modifiers} = this.props
     const $target = this.$target
     this.$popper = $popper
 
@@ -101,7 +106,7 @@ export default class BasePopover extends Base<IBasePopoverProps, IBasePopoverSta
         $popper,
         {
           placement,
-          modifiers: {arrow: {element: '[data-x-arrow]'}}
+          modifiers: {arrow: {element: '[data-x-arrow]'}, ...modifiers}
         },
       )
     } else if (this.instance) {
