@@ -1,0 +1,94 @@
+@import "../../styles/import";
+
+@keyframes progress-active {
+  0% {
+    width: 0%;
+    opacity: 1;
+  }
+  60% {
+    width: 100%;
+    opacity: 0;
+  }
+  100% {
+    width: 0;
+    opacity: 0;
+  }
+}
+
+.bui-progress {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+
+  &__outer {
+    flex: 1;
+    background: @progress-outer-fill;
+    border-radius: @progress-outer-border-radius;
+  }
+
+  &__inner {
+    position: relative;
+    border-radius: @progress-inner-border-radius;
+    transition: width 0.3s ease-out;
+    text-align: right;
+  }
+
+  &__inner &__text {
+    margin-left: 8px !important;
+    margin-right: 8px !important;
+    min-width: 0;
+    color: @progress-inner-text-color;
+  }
+
+  &__text {
+    margin-left: 4px;
+    margin-right: 4px;
+    color: @progress-color;
+    font-size: @progress-font-size;
+    min-width: 3em;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &--active &__inner::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: block;
+    content: '';
+    height: 100%;
+    background: @progress-inner-after-fill;
+  }
+
+  &--primary &__inner {
+    background: @progress-inner-fill-primary;
+    box-shadow: outside-shadow(@progress-inner-fill-primary);
+  }
+
+  &--success &__inner {
+    background: @progress-inner-fill-success;
+    box-shadow: outside-shadow(@progress-inner-fill-success);
+  }
+
+  &--warning &__inner {
+    background: @progress-inner-fill-warning;
+    box-shadow: outside-shadow(@progress-inner-fill-warning);
+  }
+
+  &--danger &__inner {
+    background: @progress-inner-fill-danger;
+    box-shadow: outside-shadow(@progress-inner-fill-danger);
+  }
+
+  &--gray &__inner {
+    background: @progress-inner-fill-gray;
+    box-shadow: outside-shadow(@progress-inner-fill-gray);
+  }
+}
