@@ -1,91 +1,107 @@
 import './Select.less'
 
-import * as PropTypes from 'prop-types'
+import * as cn from 'classnames'
 import * as React from 'react'
 
 import Base, {SizeType} from '../../common/Base'
-import SelectOption from './SelectOption'
+import BasePopover from '../../common/BasePopover'
+import Icon from '../Icon'
+import Input from '../Input'
+import SelectOption, {ISelectOption} from './SelectOption'
+
+const MODIFIER = {flip: {enabled: false}}
 
 export interface ISelectProps {
   size?: SizeType
+  multiple?: boolean
+  searchable?: boolean
+  addible?: boolean
   value?: any
   placeholder?: string
+  children: React.ReactElement<SelectOption>[]
   onChange?: (value: any) => void
 }
 
 export interface ISelectState {
-  label: string
-  value: any
+  options: ISelectOption[]
+  selectedOption: ISelectOption | undefined
   visible: boolean
-  keyword: string
+  searchKey: string
 }
 
 export default class Select extends Base<ISelectProps, ISelectState> {
 
   static Option = SelectOption
 
-  static childContextTypes = {
-    $select: PropTypes.any
-  }
-
-  $root: HTMLDivElement
-  $container: HTMLDivElement
+  $target: HTMLDivElement
 
   constructor (props: ISelectProps) {
     super(props)
 
+    const options = props.children
+      .filter((child) => child.type === SelectOption as any)
+      .map((child: any) => ({label: child.props.label, value: child.props.value}))
+
+    const selectedOption = options.find((o) => o.value === props.value)
+
     this.state = {
-      label: '',
-      value: props.value,
+      options,
+      selectedOption,
       visible: false,
-      keyword: ''
+      searchKey: ''
     }
   }
 
-  componentWillMount () {
-    document.addEventListener('click', this.onClickOutside)
+  componentDidUpdate (prevProps: ISelectProps, prevState: ISelectState) {
+    if (prevState.visible && !this.state.visible) {
+      document.removeEventListener('keydown', this.onKeyDown)
+    } else if (!prevState.visible && this.state.visible) {
+      document.addEventListener('keydown', this.onKeyDown)
+    }
   }
 
   componentWillUnmount () {
-    document.removeEventListener('click', this.onClickOutside)
+    document.removeEventListener('keydown', this.onKeyDown)
   }
 
-  getChildContext = () => {
-    return {
-      $select: this as any
-    }
+  saveTarget = (el: any) => this.$target = el
+
+  isSelected = (option: ISelectOption) => {
+    return this.state.selectedOption === option
   }
 
-  saveRoot = (el: any) => this.$root = el
+  isMatched = (option: ISelectOption) => {
+    const searchKey = this.state.searchKey.trim()
 
-  saveContainer = (el: any) => this.$container = el
+    return searchKey ? option.label.indexOf(searchKey) > -1 : true
+  }
 
-  select = (label: string, value: any) => {
-    this.setState({label, value})
+  onSelect = (option: ISelectOption) => {
+    this.setState({selectedOption: option})
 
     const onChange = Base.action(this.props.onChange)
-    onChange(value)
+    onChange(option.value)
   }
 
-  onClickOutside = (e: MouseEvent) => {
-    const el = e.target as any
-
-    if (!el || !this.$root) {
-      return
-    }
-
-    if (!this.$root.contains(el)) {
-      this.setState({visible: false})
-    }
+  onKeyDown = (e: KeyboardEvent) => {
+    // console.log(e)
   }
 
-  onToggle = () => {
-    this.setState({visible: !this.state.visible})
+  onVisibleChange = (visible: boolean) => {
+    this.setState({visible})
+  }
+
+  onSearchKeyChange = (e: any, searchKey: string) => {
+    this.setState({searchKey})
+  }
+
+  onSearchKeyClear = () => {
+    this.setState({searchKey: ''})
   }
 
   render () {
-    const {size = 'normal', placeholder, children} = this.props
-    const {visible, label} = this.state
+    const {size = 'normal', placeholder, searchable} = this.props
+    const {visible, options, selectedOption, searchKey} = this.state
 
     const className = this.className(
       'bui-select',
@@ -93,22 +109,71 @@ export default class Select extends Base<ISelectProps, ISelectState> {
       visible && 'bui-select--visible'
     )
 
+    const popoverStyle = {width: this.$target && this.$target.offsetWidth}
+
     return (
-      <div
-        className={className}
-        style={this.style()}
-        ref={this.saveRoot}
+      <BasePopover
+        visible={visible}
+        placement='bottom'
+        onChange={this.onVisibleChange}
+        refTarget={this.saveTarget}
+        modifiers={MODIFIER}
+        content={(
+          <div className='bui-select__popover' style={popoverStyle}>
+            {searchable && (
+              <div className='bui-select__search'>
+                <Input
+                  full
+                  autoFocus
+                  size='small'
+                  suffix={searchKey ? (
+                    <Icon fit name='times' onClick={this.onSearchKeyClear}/>
+                  ) : 'search'}
+                  value={searchKey}
+                  onChange={this.onSearchKeyChange}/>
+              </div>
+            )}
+            <div className='bui-select__options'>
+              {options.filter(this.isMatched).map((option, i) => (
+                <Option
+                  key={i}
+                  option={option}
+                  selected={this.isSelected(option)}
+                  onSelect={this.onSelect}/>
+              ))}
+            </div>
+          </div>
+        )}
       >
-        <div className='bui-select__header' onClick={this.onToggle}>
-          {label}
-          {!label && (
+        <div className={className}>
+          {selectedOption ? selectedOption.label : (
             <div className='bui-select__placeholder'>{placeholder}</div>
           )}
         </div>
-        <div className='bui-select__container' ref={this.saveContainer}>
-          {children}
-        </div>
-      </div>
+      </BasePopover>
     )
   }
+}
+
+interface IOptionProps {
+  option: ISelectOption
+  selected?: boolean
+  hovered?: boolean
+  onSelect: (option: ISelectOption) => void
+}
+
+function Option ({option, selected, hovered, onSelect}: IOptionProps) {
+  const className = cn(
+    'bui-select__option',
+    {
+      'bui-select__option--selected': selected,
+      'bui-select__option--hovered': hovered
+    }
+  )
+
+  return (
+    <div className={className} onClick={() => onSelect(option)}>
+      {option.label}
+    </div>
+  )
 }
