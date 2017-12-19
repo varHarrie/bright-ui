@@ -8,3 +8,9 @@ export function debounce <T extends Function> (action: T, ms: number): T {
     }, ms)
   }) as any
 }
+
+export function ensureArray (arr: any) {
+  return arr
+    ? Array.isArray(arr) ? arr : [arr]
+    : []
+}

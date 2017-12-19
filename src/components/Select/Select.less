@@ -1,7 +1,7 @@
 @import "../../styles/import";
 
 .select-size (@size, @padding-v, @padding-h, @font-size) {
-  &&--@{size} {
+  &&--@{size} &__header {
     padding: @padding-v @padding-h * 2 + 5px @padding-v @padding-h;
     font-size: @font-size;
     line-height: @font-size + 2px;
@@ -17,42 +17,63 @@
   position: relative;
   display: inline-block;
   min-width: 180px;
-  color: @select-color;
-  background: @select-fill;
-  border-radius: @select-border-radius;
-  box-shadow:
-    outside-shadow(@select-border-color),
-    border-shadow(@select-border-color, 0%);
+  max-width: 100%;
   user-select: none;
-  cursor: pointer;
-  transition: all 0.3s;
+  color: @select-color;
 
-  &:hover {
+  &__header {
+    position: relative;
+    background: @select-fill;
+    border-radius: @select-border-radius;
     box-shadow:
-      outside-shadow(@select-border-color-hover),
-      border-shadow(@select-border-color-hover, 0%);
-  }
-
-  &::after {
-    display: block;
-    margin-top: -5px;
-    position: absolute;
-    top: 50%;
-    width: 6px;
-    height: 6px;
-    border-right: 1px solid @select-border-color;
-    border-bottom: 1px solid @select-border-color;
-    content: '';
-    transform-origin: 75% 75%;
-    transform: rotate(45deg);
+      outside-shadow(@select-border-color),
+      border-shadow(@select-border-color, 0%);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
     transition: all 0.3s;
+
+    &::after {
+      display: block;
+      margin-top: -5px;
+      position: absolute;
+      top: 50%;
+      width: 6px;
+      height: 6px;
+      border-right: 1px solid @select-border-color;
+      border-bottom: 1px solid @select-border-color;
+      content: '';
+      transform-origin: 75% 75%;
+      transform: rotate(45deg);
+      transition: all 0.3s;
+    }
+
+    &:hover {
+      box-shadow:
+        outside-shadow(@select-border-color-hover),
+        border-shadow(@select-border-color-hover, 0%);
+    }
   }
 
   &__placeholder {
     color: @select-placeholder-color;
   }
 
-  &__popover {
+  &__tags {
+    margin-top: -3px;
+    margin-bottom: -8px;
+
+    .bui-tag {
+      margin-bottom: 5px;
+    }
+  }
+
+  &__container {
+    position: absolute;
+    z-index: 2;
+    top: 100%;
+    left: 0;
+    width: 100%;
     margin-top: -1px;
     padding: 1px;
     background: @select-fill;
@@ -61,17 +82,25 @@
       border-shadow(@select-border-color-active, 0%);
     border-bottom-left-radius: @select-border-radius;
     border-bottom-right-radius: @select-border-radius;
+    opacity: 0;
+    transform: scaleY(0);
+    transform-origin: 50% 0%;
+    transition: transform 0.2s, opacity 0.2s;
   }
 
   &__search {
-    border-top: 1px solid @select-option-border-color;
     margin-top: -1px;
+    border-top: 1px solid @select-option-border-color;
     padding: 8px;
   }
 
-  &__option {
+  &__options {
     margin-top: -1px;
     border-top: 1px solid @select-option-border-color;
+    max-height: 300px;
+  }
+
+  &__option {
     padding: @select-normal-padding-v @select-normal-padding-h;
     font-size: @select-normal-font-size;
     line-height: @select-normal-font-size + 2px;
@@ -90,17 +119,36 @@
     }
   }
 
-  &&--visible {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    box-shadow:
-      outside-shadow(@select-border-color-active, 70%),
-      border-shadow(@select-border-color-active, 0%);
-
-    &::after {
-      border-color: @select-border-color-active;
-      transform: rotate(225deg);
+  &__group {
+    &-label {
+      padding: @select-normal-padding-v @select-normal-padding-h;
+      font-size: @select-normal-font-size;
+      opacity: 0.6;
     }
+  }
+
+  &&--visible & {
+    &__header {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      box-shadow:
+        outside-shadow(@select-border-color-active, 70%),
+        border-shadow(@select-border-color-active, 0%);
+
+      &::after {
+        border-color: @select-border-color-active;
+        transform: rotate(225deg);
+      }
+    }
+
+    &__container {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+  }
+
+  &&--full {
+    width: 100%;
   }
 
   .select-size(normal, @select-normal-padding-v, @select-normal-padding-h, @select-normal-font-size);

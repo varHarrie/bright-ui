@@ -1,30 +1,38 @@
 import './Select.less'
 
-import * as cn from 'classnames'
+import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
 import Base, {SizeType} from '../../common/Base'
-import BasePopover from '../../common/BasePopover'
+import * as commonUtils from '../../utils/common'
 import Icon from '../Icon'
 import Input from '../Input'
-import SelectOption, {ISelectOption} from './SelectOption'
+import ScrollBar from '../ScrollBar'
+import Tag from '../Tag'
+import SelectGroup from './SelectGroup'
+import SelectOption from './SelectOption'
 
-const MODIFIER = {flip: {enabled: false}}
+export interface ISelectOption {
+  label: string
+  value: any
+}
 
 export interface ISelectProps {
   size?: SizeType
   multiple?: boolean
   searchable?: boolean
-  addible?: boolean
-  value?: any
+  value?: any | any[]
   placeholder?: string
-  children: React.ReactElement<SelectOption>[]
-  onChange?: (value: any) => void
+  full?: boolean
+  children: React.ReactElement<SelectOption>
+          | React.ReactElement<SelectGroup>
+          | React.ReactElement<SelectOption>[]
+          | React.ReactElement<SelectGroup>[]
+  onChange?: (value: any | any[]) => void
 }
 
 export interface ISelectState {
-  options: ISelectOption[]
-  selectedOption: ISelectOption | undefined
+  selected: ISelectOption[]
   visible: boolean
   searchKey: string
 }
@@ -33,62 +41,129 @@ export default class Select extends Base<ISelectProps, ISelectState> {
 
   static Option = SelectOption
 
-  $target: HTMLDivElement
+  static Group = SelectGroup
+
+  static childContextTypes = {
+    $select: PropTypes.any
+  }
+
+  $root: HTMLDivElement
 
   constructor (props: ISelectProps) {
     super(props)
 
-    const options = props.children
-      .filter((child) => child.type === SelectOption as any)
-      .map((child: any) => ({label: child.props.label, value: child.props.value}))
-
-    const selectedOption = options.find((o) => o.value === props.value)
-
     this.state = {
-      options,
-      selectedOption,
+      selected: [],
+
       visible: false,
       searchKey: ''
     }
   }
 
-  componentDidUpdate (prevProps: ISelectProps, prevState: ISelectState) {
-    if (prevState.visible && !this.state.visible) {
-      document.removeEventListener('keydown', this.onKeyDown)
-    } else if (!prevState.visible && this.state.visible) {
-      document.addEventListener('keydown', this.onKeyDown)
+  saveRoot = (el: any) => this.$root = el
+
+  options: SelectOption[] = []
+
+  getChildContext = () => {
+    return {
+      $select: this as any
     }
   }
 
+  componentDidMount () {
+    document.addEventListener('click', this.onClickOutside)
+
+    this.setState({selected: this.parse(this.props.value)})
+  }
+
+  componentWillReceiveProps ({value}: ISelectProps) {
+    if (value !== this.props.value) {
+      this.setState({selected: this.parse(value)})
+    }
+  }
+
+  // todo: using arrow keys to select
+  // componentDidUpdate (prevProps: ISelectProps, prevState: ISelectState) {
+  //   if (prevState.visible && !this.state.visible) {
+  //     document.removeEventListener('keydown', this.onKeyDown)
+  //   } else if (!prevState.visible && this.state.visible) {
+  //     document.addEventListener('keydown', this.onKeyDown)
+  //   }
+  // }
+
   componentWillUnmount () {
-    document.removeEventListener('keydown', this.onKeyDown)
+    document.removeEventListener('click', this.onClickOutside)
+    // document.removeEventListener('keydown', this.onKeyDown)
   }
 
-  saveTarget = (el: any) => this.$target = el
+  parse = (values?: any | any[]) => {
+    values = commonUtils.ensureArray(values)
 
-  isSelected = (option: ISelectOption) => {
-    return this.state.selectedOption === option
+    return this.options.reduce((s, option) => {
+      const {label, value} = option.props
+
+      if (!!values.find((v: any) => v === value)) {
+        s.push({label, value})
+      }
+
+      return s
+    }, [] as ISelectOption[])
   }
 
-  isMatched = (option: ISelectOption) => {
-    const searchKey = this.state.searchKey.trim()
-
-    return searchKey ? option.label.indexOf(searchKey) > -1 : true
+  addOption = (option: SelectOption) => {
+    this.options.push(option)
   }
 
-  onSelect = (option: ISelectOption) => {
-    this.setState({selectedOption: option})
+  removeOption = (option: SelectGroup) => {
+    this.options.filter((o) => o !== option)
+  }
+
+  select = (label: string, value: any) => {
+    const {multiple} = this.props
+    const {selected: oldSelected} = this.state
+
+    const exist = oldSelected.find((o) => o.value === value)
+
+    const selected = multiple
+      ? exist
+        ? oldSelected.filter((o) => o.value !== value)
+        : oldSelected.concat({label, value})
+      : [{label, value}]
+
+    this.setState({selected})
 
     const onChange = Base.action(this.props.onChange)
-    onChange(option.value)
+    onChange(selected)
   }
 
-  onKeyDown = (e: KeyboardEvent) => {
-    // console.log(e)
+  isMatched = (label: string) => {
+    const searchKey = this.state.searchKey.trim()
+
+    return searchKey ? label.indexOf(searchKey) > -1 : true
   }
 
-  onVisibleChange = (visible: boolean) => {
-    this.setState({visible})
+  isSelected = (value: any) => {
+    return !!this.state.selected.find((o) => o.value === value)
+  }
+
+  onClickOutside = (e: MouseEvent) => {
+    const el = e.target as any
+
+    if (!el || !this.$root) {
+      return
+    }
+
+    if (!this.$root.contains(el)) {
+      this.setState({visible: false})
+    }
+  }
+
+  // onKeyDown = (e: KeyboardEvent) => {
+  //   console.log(e)
+  // }
+
+  onVisibleToggle = () => {
+    this.setState({visible: !this.state.visible})
   }
 
   onSearchKeyChange = (e: any, searchKey: string) => {
@@ -99,81 +174,73 @@ export default class Select extends Base<ISelectProps, ISelectState> {
     this.setState({searchKey: ''})
   }
 
+  renderValue = (selected: ISelectOption[], multiple?: boolean) => {
+    return (
+      multiple
+        ? (
+          <div className='bui-select__tags'>
+            {
+              selected.map((o, i) => (
+                <Tag
+                  key={i}
+                  closable
+                  onClose={() => this.select(o.label, o.value)}
+                >
+                  {o.label}
+                </Tag>
+              ))
+            }
+          </div>
+        )
+        : selected[0].label
+    )
+  }
+
   render () {
-    const {size = 'normal', placeholder, searchable} = this.props
-    const {visible, options, selectedOption, searchKey} = this.state
+    const {size = 'normal', placeholder, searchable, multiple, full, children} = this.props
+    const {visible, selected, searchKey} = this.state
 
     const className = this.className(
       'bui-select',
       `bui-select--${size}`,
-      visible && 'bui-select--visible'
+      {
+        'bui-select--full': full,
+        'bui-select--visible': visible
+      }
     )
 
-    const popoverStyle = {width: this.$target && this.$target.offsetWidth}
-
     return (
-      <BasePopover
-        visible={visible}
-        placement='bottom'
-        onChange={this.onVisibleChange}
-        refTarget={this.saveTarget}
-        modifiers={MODIFIER}
-        content={(
-          <div className='bui-select__popover' style={popoverStyle}>
-            {searchable && (
-              <div className='bui-select__search'>
-                <Input
-                  full
-                  autoFocus
-                  size='small'
-                  suffix={searchKey ? (
-                    <Icon fit name='times' onClick={this.onSearchKeyClear}/>
-                  ) : 'search'}
-                  value={searchKey}
-                  onChange={this.onSearchKeyChange}/>
-              </div>
-            )}
-            <div className='bui-select__options'>
-              {options.filter(this.isMatched).map((option, i) => (
-                <Option
-                  key={i}
-                  option={option}
-                  selected={this.isSelected(option)}
-                  onSelect={this.onSelect}/>
-              ))}
-            </div>
-          </div>
-        )}
+      <div
+       className={className}
+       style={this.style()}
+       ref={this.saveRoot}
       >
-        <div className={className}>
-          {selectedOption ? selectedOption.label : (
+        <div className='bui-select__header' onClick={this.onVisibleToggle}>
+          {selected.length ? (
+            this.renderValue(selected, multiple)
+          ) : (
             <div className='bui-select__placeholder'>{placeholder}</div>
           )}
         </div>
-      </BasePopover>
+        <div className='bui-select__container'>
+          {searchable && (
+            <div className='bui-select__search'>
+              <Input
+                full
+                autoFocus
+                size='small'
+                suffix={searchKey ? (
+                  <Icon fit name='times' onClick={this.onSearchKeyClear}/>
+                ) : 'search'}
+                value={searchKey}
+                onChange={this.onSearchKeyChange}/>
+            </div>
+          )}
+          <ScrollBar className='bui-select__options'>
+            {children}
+          </ScrollBar>
+        </div>
+      </div>
     )
   }
-}
-
-interface IOptionProps {
-  option: ISelectOption
-  selected?: boolean
-  hovered?: boolean
-  onSelect: (option: ISelectOption) => void
-}
-
-function Option ({option, selected, hovered, onSelect}: IOptionProps) {
-  const className = cn(
-    'bui-select__option',
-    {
-      'bui-select__option--selected': selected,
-      'bui-select__option--hovered': hovered
-    }
-  )
-
-  return (
-    <div className={className} onClick={() => onSelect(option)}>
-      {option.label}
-    </div>
-  )
 }
