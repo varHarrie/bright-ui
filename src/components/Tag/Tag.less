@@ -11,10 +11,10 @@
       right: @padding-h;
     }
 
-    &--closable:hover {
+    &.bui-tag--closable {
       padding-right: @padding-h + @font-size + 3px;
 
-      .bui-tag__close {
+      &:hover .bui-tag__close {
         opacity: 1;
       }
     }
@@ -63,7 +63,7 @@
   &__close {
     position: absolute;
     cursor: pointer;
-    opacity: 0;
+    opacity: 0.6;
     transition: opacity 0.3s;
   }
 }
