@@ -61,20 +61,21 @@
       background: @list-item-fill-active;
 
       &::after {
-        width: 3px;
+        height: calc(~"100% - 6px");
       }
     }
 
     &::after {
       position: absolute;
-      top: 0;
+      top: 50%;
       left: 0;
       display: block;
-      width: 0px;
-      height: 100%;
+      width: 3px;
+      height: 0;
       background: @list-item-mark-fill;
       content: '';
-      transition: width 0.3s;
+      transform: translateY(-50%);
+      transition: height 0.2s;
     }
   }
 
