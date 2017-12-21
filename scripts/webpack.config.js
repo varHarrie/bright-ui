@@ -32,7 +32,7 @@ const rules = {
     exclude: /node_modules/,
     use: ['react-hot-loader/webpack', 'awesome-typescript-loader']
   },
-  tscForProd: {
+  tsxForProd: {
     test: /\.tsx?$/,
     include: path.resolve(root, 'src'),
     exclude: /node_modules/,
