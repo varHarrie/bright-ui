@@ -7,5 +7,5 @@ yarn-error.log*
 node_modules/
 
 dist/
-docs/
-docs-src/components/
+site/
+site-src/components/

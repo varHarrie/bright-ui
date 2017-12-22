@@ -21,18 +21,21 @@ const postCssOptions = {
 }
 
 module.exports = {
-  entry: path.resolve(root, 'docs-src/index.js'),
+  entry: path.resolve(root, 'site-src/index.js'),
   resolve: {
+    alias: {
+      'bright-ui': path.resolve(root, 'dist')
+    },
     extensions: ['.js', '.jsx', '.less']
   },
   output: {
     filename: 'index.js',
-    path: path.resolve(root, 'docs')
+    path: path.resolve(root, 'site')
   },
   module: {
     rules: [{
       test: /\jsx?$/,
-      include: path.resolve(root, 'docs'),
+      include: path.resolve(root, 'site-src'),
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader',
@@ -40,6 +43,15 @@ module.exports = {
           presets: ['env', 'react']
         }
       }
+    }, {
+      test: /\.css$/,
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: [
+          {loader: 'css-loader', options: {importLoaders: 1}},
+          {loader: 'postcss-loader', options: postCssOptions}
+        ]
+      })
     }, {
       test: /\.less$/,
       use: ExtractTextPlugin.extract({
@@ -58,7 +70,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(root, 'docs-src/index.html')
+      template: path.resolve(root, 'site-src/index.html')
     })
   ]
 }

@@ -4,7 +4,7 @@ const yfm = require('yaml-front-matter')
 const generateFiles = require('./generate-files')
 
 const root = path.resolve(__dirname, '..')
-const targetDirectory = path.resolve(root, 'docs-src/components')
+const targetDirectory = path.resolve(root, 'site-src/components')
 
 function isDirectory(filename) {
   return fs.statSync(filename).isDirectory()
