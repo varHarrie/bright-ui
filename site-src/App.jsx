@@ -1,10 +1,15 @@
 import 'bright-ui/index.css'
 import './styles/index.less'
 
-import {Col, Divider, Icon, Input, Row, ScrollBar, List} from 'bright-ui'
 import React from 'react'
+import {withRouter} from 'react-router'
+import {Route} from 'react-router-dom'
+import {Col, Divider, Icon, Input, Row, ScrollBar, List} from 'bright-ui'
 
-export default class App extends React.Component {
+import Page from './Page'
+import components from './components'
+
+class App extends React.Component {
 
   constructor (props) {
     super(props)
@@ -15,6 +20,7 @@ export default class App extends React.Component {
 
     this.onSearchKeyChange = this.onSearchKeyChange.bind(this)
     this.onSearchKeyClear = this.onSearchKeyClear.bind(this)
+    this.onClickMenuItem = this.onClickMenuItem.bind(this)
   }
 
   onSearchKeyChange (e, searchKey) {
@@ -25,9 +31,13 @@ export default class App extends React.Component {
     this.setState({searchKey: ''})
   }
 
+  onClickMenuItem (e, value) {
+    this.props.history.push('/' + value)
+  }
+
   render () {
     const {searchKey} = this.state
-    const components = []
+    const url = this.props.location.pathname.slice(1)
 
     return (
       <div className="App">
@@ -49,39 +59,26 @@ export default class App extends React.Component {
               )}
               onChange={this.onSearchKeyChange}/>
             <ScrollBar className='App__menu'>
-              <List>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item selected>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
-                <List.Item>test</List.Item>
+              <List size='small'>
+                {components.map((component) => (
+                  <List.Item
+                    key={component.meta.title}
+                    selected={url === component.meta.title}
+                    value={component.meta.title}
+                    onClick={this.onClickMenuItem}>
+                    {component.meta.title}&nbsp;{component.meta.subtitle}
+                  </List.Item>
+                ))}
               </List>
             </ScrollBar>
           </Col>
           <Col className="App__container" xs={24} sm={24} md={16} lg={18} xl={18}>
-            test
+            <Route path='/:name?' component={Page}/>
           </Col>
         </Row>
       </div>
     )
   }
 }
+
+export default withRouter(App)

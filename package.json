@@ -10,8 +10,9 @@
   ],
   "scripts": {
     "dev": "webpack --watch --config scripts/webpack.config.js",
-    "dev-site": "webpack --watch --config scripts/webpack.site.config.js",
+    "dev-site": "webpack-dev-server --config scripts/webpack.site.config.js",
     "build": "rimraf dist && webpack --env production --config scripts/webpack.config.js",
+    "build-site": "rimraf site && webpack --env production --config scripts/webpack.site.config.js",
     "build-docs": "rimraf site-src/components && node scripts/build-docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -62,6 +63,7 @@
     "typescript": "^2.6.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.1",
     "yaml-front-matter": "^3.4.0"
   },
