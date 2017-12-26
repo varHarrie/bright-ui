@@ -24,7 +24,7 @@ class App extends React.Component {
   }
 
   onSearchKeyChange (e, searchKey) {
-    this.setState({searchKey})
+    this.setState({searchKey: searchKey.toLowerCase()})
   }
 
   onSearchKeyClear () {
@@ -38,6 +38,7 @@ class App extends React.Component {
   render () {
     const {searchKey} = this.state
     const url = this.props.location.pathname.slice(1)
+    const filteredComponents = components.filter((c) => c.meta.title.toLowerCase().indexOf(searchKey) > -1)
 
     return (
       <div className="App">
@@ -60,7 +61,7 @@ class App extends React.Component {
               onChange={this.onSearchKeyChange}/>
             <ScrollBar className='App__menu'>
               <List size='small'>
-                {components.map((component) => (
+                {filteredComponents.map((component) => (
                   <List.Item
                     key={component.meta.title}
                     selected={url === component.meta.title}

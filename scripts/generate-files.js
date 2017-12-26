@@ -36,18 +36,19 @@ module.exports = function (sourceFile, targetDir, variables = {}) {
         if (type === 'h2') {
           if (content !== 'API') {
             demos.push({
+              key: randomString(),
               title: content,
-              descriptions: []
+              description: ['article']
             })
           }
 
         } else if (type === 'p') {
           if (demo) {
-            demo.descriptions.push(section)
+            demo.description.push(section)
           }
 
         } else if (type === 'table') {
-          apis.push(section)
+          apis.push({key:randomString(), table: section})
 
         } else if (type === 'pre' && content && content.lang === 'js') {
           const code = extra[1]
@@ -55,6 +56,7 @@ module.exports = function (sourceFile, targetDir, variables = {}) {
 
           if (demo) {
             demo.name = name
+            demo.raw = code
             demo.component = `{{${name}}}`
           }
 

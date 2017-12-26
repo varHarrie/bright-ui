@@ -13,7 +13,7 @@
     "dev-site": "webpack-dev-server --config scripts/webpack.site.config.js",
     "build": "rimraf dist && webpack --env production --config scripts/webpack.config.js",
     "build-site": "rimraf site && webpack --env production --config scripts/webpack.site.config.js",
-    "build-docs": "rimraf site-src/components && node scripts/build-docs",
+    "build-docs": "node scripts/build-docs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -49,6 +49,7 @@
     "less-plugin-functions": "^1.0.0",
     "mark-twain": "^2.0.2",
     "postcss-loader": "^2.0.9",
+    "prismjs": "^1.9.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-hot-loader": "^3.1.3",

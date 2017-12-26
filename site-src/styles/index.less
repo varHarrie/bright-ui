@@ -17,6 +17,58 @@ div {
   box-sizing: border-box;
 }
 
+.ib {
+  display: inline-block;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr30 {
+  margin-right: 30px;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.pd10 {
+  padding: 10px;
+}
+
+.pd30 {
+  padding: 30px;
+}
+
+.s38 {
+  width: 38px;
+  height: 38px;
+  border-radius: 4px;
+  background: @color-gray-light;
+}
+
+.g {
+  min-height: 50px;
+  background: @color-gray-light;
+}
+
+.cl {
+  .clear-both();
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
 .App {
   padding: 50px 80px 0;
   width: 100%;
@@ -54,7 +106,6 @@ div {
   }
 
   &__container {
-    padding: 20px 40px 0;
     height: 100%;
     background: white;
     box-shadow: -10px 0 10px rgba(0, 0, 0, 0.015);
@@ -62,9 +113,82 @@ div {
 }
 
 .Page {
+  padding: 20px 40px 0;
+
   &__title {
     margin-top: 0;
   }
+}
 
+.Example {
+  margin-bottom: 30px;
 
+  &__title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: lighter;
+  }
+
+  &__description {
+    color: @font-color-lighter;
+  }
+
+  &__demo {
+    position: relative;
+    border: @border;
+  }
+
+  &__toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 5px;
+    background: @color-gray-lighter;
+    color: @color-gray;
+    font-size: 12px;
+    border-top-left-radius: 4px;
+    cursor: pointer;
+  }
+
+  &__cooked {
+    padding: 10px;
+  }
+
+  &__raw {
+    padding: 10px;
+    border-top: @border;
+    
+    pre {
+      font-family: consolas;
+      font-size: 14px;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+
+  table {
+    font-weight: lighter;
+    font-size: 14px;
+    width: 100%;
+    border: @border;
+    background: white;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border-radius: @border-radius;
+
+    td {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+    }
+
+    th {
+      padding: 8px 16px;
+      border: 1px solid #ddd;
+      background: @color-gray-lighter;
+    }
+  }
 }

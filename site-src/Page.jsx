@@ -1,7 +1,9 @@
 import React from 'react'
-import {Divider} from 'bright-ui'
+import {Divider, ScrollBar} from 'bright-ui'
 
 import * as components from './components'
+import WaterFall from './commons/WaterFall'
+import Example from './commons/Example'
 
 export default class Page extends React.Component {
 
@@ -20,11 +22,10 @@ export default class Page extends React.Component {
       return null
     }
 
-    const {meta, demos} = this.component
-    console.log('this.component', this.component)
+    const {meta, demos, apis} = this.component
 
     return (
-      <div className="Page">
+      <ScrollBar className="Page">
         <div className="Page__header">
           <h2 className="Page__title">
             {meta.title}
@@ -32,12 +33,25 @@ export default class Page extends React.Component {
           </h2>
           <Divider/>
         </div>
-        {demos.map((demo) => (
-          <div className="Page__section" key={demo.name}>
-            test
-          </div>
-        ))}
-      </div>
+        <div className="Page__sections">
+          <WaterFall
+            items={demos}
+            columns={meta.columns}
+            template={(demo) => (
+              <Example
+                key={demo.key}
+                title={demo.title}
+                description={demo.description}
+                raw={demo.raw}
+                component={demo.component}
+              />
+            )}
+          />
+          {apis.map((api) => (
+            <Example key={api.key} title='API' description={api.table}/>
+          ))}
+        </div>
+      </ScrollBar>
     )
   }
 }
