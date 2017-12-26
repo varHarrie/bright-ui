@@ -184,3 +184,13 @@ export default class BadgeNoChildren extends React.Component {
   }
 }
 ```
+
+## API
+
+| 参数 | 说明 | 类型 | 默认值 |
+|---|---|---|---|
+| value | 内容 | number \| string | -
+| max | 最大数值 | number | -
+| type | 颜色样式 | {{type-color}} | "danger"
+| dot | 显示小红点 | boolean | false
+| offset | 位置偏移 | {top?: string, right?: string} | -

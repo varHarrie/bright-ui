@@ -15,17 +15,19 @@ import {Avatar} from 'bright-ui'
 
 export default class AvatarSize extends React.Component {
   render () {
-    <div>
-      <div className='ib mr10'>
-        <Avatar size='small'/>
+    return (
+      <div>
+        <div className='ib mr10'>
+          <Avatar size='small'/>
+        </div>
+        <div className='ib mr10'>
+          <Avatar/>
+        </div>
+        <div className='ib mr10'>
+          <Avatar size='large'/>
+        </div>
       </div>
-      <div className='ib mr10'>
-        <Avatar/>
-      </div>
-      <div className='ib mr10'>
-        <Avatar size='large'/>
-      </div>
-    </div>
+    )
   }
 }
 ```
@@ -38,12 +40,12 @@ export default class AvatarSize extends React.Component {
 import React from 'react'
 import {Avatar} from 'bright-ui'
 
-export class AvatarRadius extends React.Component {
+export default class AvatarRadius extends React.Component {
   render () {
     return (
       <div>
         <div>
-          <Avatar src={img} title='title'/>
+          <Avatar title='title'/>
         </div>
       </div>
     )
@@ -59,21 +61,21 @@ export class AvatarRadius extends React.Component {
 import React from 'react'
 import {Avatar} from 'bright-ui'
 
-export class AvatarRadius extends React.Component {
+export default class AvatarRadius extends React.Component {
   render () {
     return (
       <div>
         <div className='ib mr10'>
-          <Avatar src={img}/>
+          <Avatar/>
         </div>
         <div className='ib mr10'>
-          <Avatar src={img} radius={10}/>
+          <Avatar radius={10}/>
         </div>
         <div className='ib mr10'>
-          <Avatar src={img} radius='square'/>
+          <Avatar radius='square'/>
         </div>
         <div className='ib mr10'>
-          <Avatar src={img} radius='circle'/>
+          <Avatar radius='circle'/>
         </div>
       </div>
     )
