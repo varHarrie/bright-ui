@@ -83,11 +83,11 @@ export default class AvatarRadius extends React.Component {
 }
 ```
 
-## API
+## Avatar API
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| radius | 圆角大小 | {{radius}} | - |
-| size | 尺寸 | {{size}} | 'normal' |
+| radius | 圆角大小 | 'number' \|'square' \| 'circle' | - |
+| size | 尺寸 | 'small' \| 'normal' \|'circle' | 'normal' |
 | src | 资源地址 | string | - |
 | title | 鼠标悬停时显示的文本 | string | - |
