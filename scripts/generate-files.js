@@ -11,10 +11,9 @@ function randomString () {
   return Math.random().toString().slice(2)
 }
 
-module.exports = function (sourceFile, targetDir, variables = {}) {
+module.exports = function (sourceFile, targetDir) {
   return fse.mkdirp(targetDir)
     .then(() => readFile(sourceFile, 'utf8'))
-    .then((source) => source.replace(/{{([^}]+)}}/g, (_, w) => variables[w]))
     .then((source) => mt(source))
     .then((source) => {
       const promises = []
@@ -31,10 +30,13 @@ module.exports = function (sourceFile, targetDir, variables = {}) {
 
         const [type, content, extra] = section
         const demo = demos.length && demos[demos.length - 1]
+        const api = apis.length && apis[apis.length - 1]
 
 
         if (type === 'h2') {
-          if (content !== 'API') {
+          if (/\sAPI$/.test(content)) {
+            apis.push({title: content})
+          } else {
             demos.push({
               key: randomString(),
               title: content,
@@ -48,7 +50,9 @@ module.exports = function (sourceFile, targetDir, variables = {}) {
           }
 
         } else if (type === 'table') {
-          apis.push({key:randomString(), table: section})
+          if (api) {
+            api.content = section
+          }
 
         } else if (type === 'pre' && content && content.lang === 'js') {
           const code = extra[1]

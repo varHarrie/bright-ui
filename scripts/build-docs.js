@@ -32,13 +32,11 @@ function findMarkdown (directory, lang) {
   return markdowns
 }
 
-const variables = yfm.loadFront(path.join(root, `src/components/__variables.${lang}.md`))
-
 const promises = findMarkdown(path.join(root, 'src'), lang)
   .map(({name, fullPath}) => {
     const target = path.join(targetDirectory, name.replace(/\.md$/, ''))
 
-    return generateFiles(fullPath, target, variables)
+    return generateFiles(fullPath, target)
   })
 
 Promise

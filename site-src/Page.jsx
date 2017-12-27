@@ -48,7 +48,7 @@ export default class Page extends React.Component {
             )}
           />
           {apis.map((api) => (
-            <Example key={api.key} title='API' description={api.table}/>
+            <Example key={api.title} title={api.title} description={api.content}/>
           ))}
         </div>
       </ScrollBar>
