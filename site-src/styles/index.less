@@ -152,7 +152,7 @@ div {
   }
 
   &__cooked {
-    padding: 10px;
+    padding: 30px;
   }
 
   &__raw {
@@ -190,5 +190,57 @@ div {
       border: 1px solid #ddd;
       background: @color-gray-lighter;
     }
+  }
+}
+
+.Paragraphs {
+  &__item {
+    margin-bottom: 8px;
+    width: 100%;
+    height: 12px;
+    background: @color-gray-lighter;
+
+    &:nth-child(even) {
+      width: 80%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.Browser {
+  background: @color-gray-light;
+  border-radius: @border-radius;
+  box-shadow: @box-shadow;
+
+  &__header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 8px;
+    height: 36px;
+  }
+
+  &__action {
+    display: inline-block;
+    margin-right: 8px;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: white;
+  }
+
+  &__address {
+    flex: 1;
+    height: 24px;
+    background: white;
+    border-radius: @border-radius;
+  }
+
+  &__container {
+    height: 350px;
+    background: white;
   }
 }
