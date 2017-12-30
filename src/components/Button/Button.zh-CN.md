@@ -243,7 +243,7 @@ export default class ButtonGroupVertical extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| size | 尺寸 | 'small' \| 'normal' \|'circle' | 'normal' |
+| size | 尺寸 | 'small' \| 'normal' \|'large' | 'normal' |
 | type| 颜色类型 | 'default' \| 'plain' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'white' \| 'black' | 'default' |
 | nativeType | 原生按钮`type`，作用于表单 | 'button' \| 'submit' \| 'reset' | 'button' |
 | basic | 简约类型 | boolean | false |
