@@ -10,7 +10,7 @@ subtitle: 对话框
 一个基本的对话框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Dialog, Button} from 'bright-ui'
 
 export default class DialogNormal extends React.Component {
@@ -50,7 +50,7 @@ export default class DialogNormal extends React.Component {
 返回`Promise`，让对话框显示加载中的状态
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Dialog, Button} from 'bright-ui'
 
 export default class DialogPromise extends React.Component {
@@ -101,7 +101,7 @@ export default class DialogPromise extends React.Component {
 使用预设的确认对话框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Dialog, Button} from 'bright-ui'
 
 export default class ConfirmNormal extends React.Component {
@@ -140,7 +140,7 @@ export default class ConfirmNormal extends React.Component {
 使用`Dialog.confirm(options)`快速弹出对话框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Dialog, Button} from 'bright-ui'
 
 export default class ConfirmFunctional extends React.Component {
@@ -185,7 +185,7 @@ export default class ConfirmFunctional extends React.Component {
 使用预设的输入对话框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Dialog, Button} from 'bright-ui'
 
 export default class PromptNormal extends React.Component {
@@ -230,7 +230,7 @@ export default class PromptNormal extends React.Component {
 使用`Dialog.prompt(options)`快速弹出对话框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Dialog, Button} from 'bright-ui'
 
 export default class PromptFunctional extends React.Component {
@@ -282,7 +282,7 @@ export default class PromptFunctional extends React.Component {
 | closable | 是否显示关闭按钮 | boolean | true |
 | closeOnEsc | 按下`ESC`键关闭 | boolean | true |
 | closeOnMaskClick | 点击遮罩关闭 | boolean | true |
-| transition | 动画效果 | "scale" \| "slide-up" | "scale" |
+| transition | 动画效果 | 'scale' \| 'slide-up' | 'scale' |
 | container | 渲染到容器 |  HTMLElement \| (() => HTMLElement) | - |
 | autoDestroy | 自动销毁容器 | boolean | true |
 | header | 头部 | ReactNode | - |
@@ -291,10 +291,10 @@ export default class PromptFunctional extends React.Component {
 | title | 标题 | ReactNode | - |
 | cancelIcon | 取消按钮图标 | string | - |
 | confirmIcon | 确定按钮图标 | string | - |
-| cancelType | 取消按钮类型 | 'default' \| 'plain' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'white' \| 'black' | "default" |
-| confirmType | 确定按钮类型 | 'default' \| 'plain' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'white' \| 'black' | "primary" |
-| cancelText | 取消按钮文本 | ReactNode | "取消" |
-| confirmText | 确定按钮文本 | ReactNode | "确定" |
+| cancelType | 取消按钮类型 | 'default' \| 'plain' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'white' \| 'black' | 'default' |
+| confirmType | 确定按钮类型 | 'default' \| 'plain' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| 'white' \| 'black' | 'primary' |
+| cancelText | 取消按钮文本 | ReactNode | '取消' |
+| confirmText | 确定按钮文本 | ReactNode | '确定' |
 | onConfirm | 点击确定按钮时触发的事件 | () => void \| Promise | - |
 | onCancel | 点击取消按钮时触发的事件 | () => void \| Promise | - |
 | onClose | 点击关闭按钮时触发的事件 | () => void | - |
@@ -305,9 +305,9 @@ export default class PromptFunctional extends React.Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
 | visible | 是否显示 | boolean | false |
-| icon | 图标 | string | "question-circle" |
-| title | 标题 | string | "确认" |
-| size | 尺寸 | 'small' \| 'normal' \|'circle' | "small" |
+| icon | 图标 | string | 'question-circle' |
+| title | 标题 | string | '确认' |
+| size | 尺寸 | 'small' \| 'normal' \|'circle' | 'small' |
 | closeOnMaskClick | 点击遮罩关闭 | boolean | false |
 | container | 渲染到容器 | HTMLElement \| (() => HTMLElement) | - |
 | autoDestroy | 自动销毁容器 | boolean | true
@@ -325,7 +325,7 @@ export default class PromptFunctional extends React.Component {
 | placeholder | 输入框提示 | string | - |
 | icon | 图标 | string | - |
 | title | 标题 | string | - |
-| size | 尺寸 | 'small' \| 'normal' \|'circle' | "small" |
+| size | 尺寸 | 'small' \| 'normal' \|'circle' | 'small' |
 | closeOnMaskClick | 点击遮罩关闭 | boolean | false |
 | container | 渲染到容器 | HTMLElement \| (() => HTMLElement) | - |
 | autoDestroy | 自动销毁容器 | boolean | true |

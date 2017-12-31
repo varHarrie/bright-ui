@@ -10,7 +10,7 @@ subtitle: 按钮
 提供多种颜色类型，用于不同的场合和语境
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonType extends React.Component {
@@ -40,7 +40,7 @@ export default class ButtonType extends React.Component {
 设置按钮尺寸
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonSize extends React.Component {
@@ -61,7 +61,7 @@ export default class ButtonSize extends React.Component {
 边框形式展示
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonBasic extends React.Component {
@@ -91,7 +91,7 @@ export default class ButtonBasic extends React.Component {
 设置按钮圆角
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonRadius extends React.Component {
@@ -116,7 +116,7 @@ export default class ButtonRadius extends React.Component {
 内嵌图标
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonIcon extends React.Component {
@@ -139,7 +139,7 @@ export default class ButtonIcon extends React.Component {
 禁止点击
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default  class ButtonDisabled extends React.Component {
@@ -160,7 +160,7 @@ export default  class ButtonDisabled extends React.Component {
 显示加载中动画
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonLoading extends React.Component {
@@ -181,7 +181,7 @@ export default class ButtonLoading extends React.Component {
 将一系列按钮组合在一起，移除相互之间的间隙
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonGroupNormal extends React.Component {
@@ -216,7 +216,7 @@ export default class ButtonGroupNormal extends React.Component {
 ## 垂直方向按钮组
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Button} from 'bright-ui'
 
 export default class ButtonGroupVertical extends React.Component {

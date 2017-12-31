@@ -10,7 +10,7 @@ subtitle: 多选框
 用于选中多个值
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Checkbox} from 'bright-ui'
 
 export default class CheckboxNormal extends React.Component {
@@ -31,7 +31,7 @@ export default class CheckboxNormal extends React.Component {
 设置多选框大小
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Checkbox} from 'bright-ui'
 
 export default class CheckboxSize extends React.Component {
@@ -52,7 +52,7 @@ export default class CheckboxSize extends React.Component {
 使用`indeterminate`属性实现不确定状态
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Checkbox} from 'bright-ui'
 
 export default class CheckboxIndeterminate extends React.Component {
@@ -133,7 +133,7 @@ export default class CheckboxIndeterminate extends React.Component {
 禁止选择
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Checkbox} from 'bright-ui'
 
 export default class CheckboxDisabled extends React.Component {

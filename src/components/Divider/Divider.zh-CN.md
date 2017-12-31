@@ -10,7 +10,7 @@ subtitle: 分割线
 用于隔开不同元素
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Divider, Icon} from 'bright-ui'
 import Paragraphs from '../../commons/Paragraphs'
 
@@ -32,7 +32,7 @@ export default class DividerNormal extends React.Component {
 用于垂直展示
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Divider, Icon} from 'bright-ui'
 import Paragraphs from '../../commons/Paragraphs'
 
@@ -54,7 +54,7 @@ export default class DividerVertical extends React.Component {
 在分割线中间展示内容
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Divider, Icon} from 'bright-ui'
 import Paragraphs from '../../commons/Paragraphs'
 
@@ -79,5 +79,5 @@ export default class DividerContent extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| vertical | 展示方向 | "horizontal" \| "vertical" | "vertical" |
+| vertical | 展示方向 | 'horizontal' \| 'vertical' | 'vertical' |
 | children | 内容 | ReactNode | - |

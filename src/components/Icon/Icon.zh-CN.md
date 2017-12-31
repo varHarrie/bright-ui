@@ -10,7 +10,7 @@ subtitle: 图标
 使用`name`指定图标名称，可使用的图标名称请查阅[fontawesome](http://fontawesome.io/icons/)，使用时请省略`fa-`前缀
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Icon} from 'bright-ui'
 
 export default class IconNormal extends React.Component {
@@ -32,7 +32,7 @@ export default class IconNormal extends React.Component {
 支持多种颜色
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Icon} from 'bright-ui'
 
 export default class IconColor extends React.Component {
@@ -59,5 +59,5 @@ export default class IconColor extends React.Component {
 | spinning | 旋转的 | boolean | false |
 | fit | 等宽的 | boolean | false |
 | clickable | 显示可点击样式 | boolean | - |
-| color | 颜色 | "normal" \| "gray" \| "primary" \| "success" \| "warning" \| "danger" \| string | "normal" |
+| color | 颜色 | 'normal' \| 'gray' \| 'primary' \| 'success' \| 'warning' \| 'danger' \| string | 'normal' |
 | onClick | 点击图标时触发的事件 | (e: MouseEvent => void) | - |

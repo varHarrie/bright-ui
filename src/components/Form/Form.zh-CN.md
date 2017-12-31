@@ -10,7 +10,7 @@ subtitle: 表单
 一个简单的表单
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Form, Input} from 'bright-ui'
 
 export default class FormNormal extends React.Component {
@@ -36,7 +36,7 @@ export default class FormNormal extends React.Component {
 支持数据响应、表单验证、错误信息显示
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Form, Input, Button, Icon} from 'bright-ui'
 
 export default class FormReactive extends React.Component {
@@ -83,10 +83,10 @@ export default class FormReactive extends React.Component {
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
 | layout | 布局方式 | 'vertical' \| 'horizontal' | 'vertical'
-| labelWidth | 标签宽度 | string | number | - |
+| labelWidth | 标签宽度 | string \| number | - |
 | validations | 校验对象 | {[string]: (value, values) => boolean \| string} | - |
 | showError | 是否显示错误信息 | boolean | true |
-| onSubmit | 表单提交时触发的事件 | (errors: any[] | null, values: any, reset: () => void) => void | - |
+| onSubmit | 表单提交时触发的事件 | (errors: any[] \| null, values: any, reset: () => void) => void | - |
 
 ## Form.Field API
 

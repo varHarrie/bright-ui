@@ -10,7 +10,7 @@ subtitle: 栅格
 使用`Row`和`Col`定义区块大小
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Row, Col} from 'bright-ui'
 
 export default class GridNormal extends React.Component {

@@ -67,13 +67,13 @@ class App extends React.Component {
                     selected={url === component.meta.title}
                     value={component.meta.title}
                     onClick={this.onClickMenuItem}>
-                    {component.meta.title}&nbsp;{component.meta.subtitle}
+                    {component.meta.title}&nbsp;{component.meta.subtitle || ''}
                   </List.Item>
                 ))}
               </List>
             </ScrollBar>
           </Col>
-          <Col className="App__container" xs={24} sm={24} md={16} lg={18} xl={18}>
+          <Col className='App__container' xs={24} sm={24} md={16} lg={18} xl={18}>
             <Route path='/:name?' component={Page}/>
           </Col>
         </Row>

@@ -10,7 +10,7 @@ subtitle: 日历
 用于日期展示和选择
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Calendar, Input} from 'bright-ui'
 
 function format (date, placeholder = '请选择日期') {
@@ -58,7 +58,7 @@ export default class CalendarNormal extends React.Component {
 选择日期区间
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Calendar, Input} from 'bright-ui'
 
 function format (date, placeholder = '请选择日期') {

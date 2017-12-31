@@ -10,7 +10,7 @@ subtitle: 输入框
 一个基本的输入框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input} from 'bright-ui'
 
 export default class InputNormal extends React.Component {
@@ -46,7 +46,7 @@ export default class InputNormal extends React.Component {
 不同尺寸的输入框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input} from 'bright-ui'
 
 export default class InputSize extends React.Component {
@@ -71,7 +71,7 @@ export default class InputSize extends React.Component {
 常用于显示图标
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input} from 'bright-ui'
 
 export default class InputPrefixAndSuffix extends React.Component {
@@ -90,7 +90,7 @@ export default class InputPrefixAndSuffix extends React.Component {
 禁用输入框
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input} from 'bright-ui'
 
 export default class InputDisabled extends React.Component {
@@ -109,7 +109,7 @@ export default class InputDisabled extends React.Component {
 设置100%的宽度
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input} from 'bright-ui'
 
 export default class InputFull extends React.Component {
@@ -128,7 +128,7 @@ export default class InputFull extends React.Component {
 设置输入框圆角
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input} from 'bright-ui'
 
 export default class InputRadius extends React.Component {
@@ -156,7 +156,7 @@ export default class InputRadius extends React.Component {
 支持`Input`，`InputNumber`，`Button`
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {Input, Button, InputNumber} from 'bright-ui'
 
 export default class InputGroupNormal extends React.Component {
@@ -186,8 +186,8 @@ export default class InputGroupNormal extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| size | 尺寸 | 'small' \| 'normal' \|'large' | "normal" |
-| type | 类型 | "text" \| "password" | "text" |
+| size | 尺寸 | 'small' \| 'normal' \|'large' | 'normal' |
+| type | 类型 | 'text' \| 'password' | 'text' |
 | value | 输入框的值 | string | - |
 | placeholder | 提示 | string | - |
 | readOnly | 只读 | boolean | false |

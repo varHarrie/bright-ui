@@ -10,7 +10,7 @@ subtitle: 日期时间选择器
 用于选择日期和时间
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {DatetimePicker, Button} from 'bright-ui'
 
 export default class DatetimePickerNormal extends React.Component {
@@ -29,7 +29,7 @@ export default class DatetimePickerNormal extends React.Component {
 设置日期格式
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {DatetimePicker, Button} from 'bright-ui'
 
 export default class DatetimePickerFormat extends React.Component {
@@ -46,7 +46,7 @@ export default class DatetimePickerFormat extends React.Component {
 ## 自定义触发元素
 
 ```js
-import * as React from 'react'
+import React from 'react'
 import {DatetimePicker, Button} from 'bright-ui'
 
 export default class DatetimePickerChildren extends React.Component {
@@ -69,14 +69,14 @@ export default class DatetimePickerChildren extends React.Component {
 
 | 参数 | 说明 | 类型 | 默认值 |
 |---|---|---|---|
-| icon | 图标 | string | "calendar" |
+| icon | 图标 | string | 'calendar' |
 | value | 值 | Date \| string \| null | - |
-| format | 格式 | string | "YYYY-MM-DD HH:mm:ss" |
+| format | 格式 | string | 'YYYY-MM-DD HH:mm:ss' |
 | placeholder | 提示 | string | - |
 | disabled | 是否禁用 | boolean | false |
 | full | 是否撑满父容器宽度 | boolean | false |
 | size | 输入框尺寸 | 'small' \| 'normal' \| 'large' | - |
-| trigger | 弹出层触发方式 | 'click' \| 'hover' \| 'focus' | "focus" |
+| trigger | 弹出层触发方式 | 'click' \| 'hover' \| 'focus' | 'focus' |
 | children | 用于自定义触发元素 | ({value: string, date: Date, disabled: boolean}) => ReactNode | - |
 | onChange | 值改变时触发的事件 | (date: Date \| null, value: string) => void | - |
 | onFocus | 输入框获取焦点时触发的事件 | (e: FormEvent) => void | - |
