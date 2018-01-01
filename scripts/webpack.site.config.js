@@ -5,6 +5,7 @@ const lessFunctions = require('less-plugin-functions')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const root = path.resolve(__dirname, '..')
 
@@ -53,6 +54,15 @@ const rules = {
         {loader: 'less-loader', options: lessOptions}
       ]
     })
+  },
+  'url': {
+    test: /\.(png|jpg|gif)$/,
+    use: {
+      loader: 'url-loader',
+      options: {
+        limit: 8192
+      }
+    }
   }
 }
 
@@ -63,11 +73,6 @@ const base = {
       'bright-ui': path.resolve(root, 'dist')
     },
     extensions: ['.js', '.jsx', '.less']
-  },
-  output: {
-    filename: 'index.js',
-    path: path.resolve(root, 'site'),
-    publicPath: '/'
   }
 }
 
@@ -78,6 +83,11 @@ const development = {
     'webpack/hot/only-dev-server',
     path.resolve(root, 'site-src/index.js')
   ],
+  output: {
+    filename: 'index.js',
+    path: path.resolve(root, 'site'),
+    publicPath: '/'
+  },
   devServer: {
     hot: true,
     historyApiFallback: true,
@@ -86,7 +96,7 @@ const development = {
     contentBase: path.resolve(root, 'dist')
   },
   module: {
-    rules: [rules.jsx, rules.css, rules.less]
+    rules: [rules.jsx, rules.css, rules.less, rules.url]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -102,8 +112,13 @@ const development = {
 
 const production = {
   entry: path.resolve(root, 'site-src/index.js'),
+  output: {
+    filename: 'index.js',
+    path: path.resolve(root, 'site'),
+    publicPath: '/bright-ui'
+  },
   module: {
-    rules: [rules.jsx, rules.css, rules.less]
+    rules: [rules.jsx, rules.css, rules.less, rules.url]
   },
   plugins: [
     new ExtractTextPlugin('index.css'),
@@ -112,6 +127,16 @@ const production = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(root, 'site-src/index.html')
+    }),
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ie8: false,
+        mangle: true,
+        output: {
+          comments: false,
+          beautify: false
+        }
+      }
     })
   ]
 }
