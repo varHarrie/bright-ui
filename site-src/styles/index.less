@@ -17,6 +17,10 @@ div {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+}
+
 .ib {
   display: inline-block;
 }
@@ -91,9 +95,14 @@ div {
     font-size: 24px;
     font-weight: normal;
   }
+
+  &__logo {
+    height: 40px;
+  }
   
   &__subtitle {
     margin-top: 5px;
+    padding-left: 40px;
     font-size: 18px;
     font-weight: lighter;
     color: @font-color-light;
@@ -101,6 +110,7 @@ div {
 
   &__menu {
     margin-top: 15px;
+    padding-bottom: 100px;
     flex: 1;
     font-weight: lighter;
   }

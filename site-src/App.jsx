@@ -9,6 +9,8 @@ import {Col, Divider, Icon, Input, Row, ScrollBar, List} from 'bright-ui'
 import Page from './Page'
 import components from './components'
 
+const logo = require('./assets/logo.png')
+
 class App extends React.Component {
 
   constructor (props) {
@@ -32,7 +34,7 @@ class App extends React.Component {
   }
 
   onClickMenuItem (e, value) {
-    this.props.history.push('/' + value)
+    this.props.history.push(this.props.match.url + value)
   }
 
   render () {
@@ -41,12 +43,12 @@ class App extends React.Component {
     const filteredComponents = components.filter((c) => c.meta.title.toLowerCase().indexOf(searchKey) > -1)
 
     return (
-      <div className="App">
-        <Row className="App__wrapper">
-          <Col className="App__header" xs={24} sm={24} md={8} lg={6} xl={6}>
+      <div className='App'>
+        <Row className='App__wrapper'>
+          <Col className='App__header' xs={24} sm={24} md={8} lg={6} xl={6}>
             <h1 className='App__title'>
-              Bright UI
-              <div className="App__subtitle">
+              <img className='App__logo' src={logo} alt='Bright UI'/>
+              <div className='App__subtitle'>
                 React Components
               </div>
             </h1>
@@ -61,6 +63,9 @@ class App extends React.Component {
               onChange={this.onSearchKeyChange}/>
             <ScrollBar className='App__menu'>
               <List size='small'>
+                <a href='https://github.com/varHarrie/bright-ui'>
+                  <List.Item><Icon name='github'>GitHub</Icon></List.Item>
+                </a>
                 {filteredComponents.map((component) => (
                   <List.Item
                     key={component.meta.title}

@@ -16,21 +16,21 @@ export default class WaterFall extends React.Component {
   render () {
     const {template, items} = this.props
 
-    if (this.isDoubleColumns()) {
-      const leftItems = this.props.items.filter((item, i) => i % 2 === 0)
-      const rightItems = this.props.items.filter((item, i) => i % 2 === 1)
+    // if (this.isDoubleColumns()) {
+    //   const leftItems = this.props.items.filter((item, i) => i % 2 === 0)
+    //   const rightItems = this.props.items.filter((item, i) => i % 2 === 1)
 
-      return (
-        <Row className='WaterFall' gutter={8}>
-          <Col xs={24} lg={12}>
-            {leftItems.map((item, i) => template(item, i))}
-          </Col>
-          <Col xs={24} lg={12}>
-            {rightItems.map((item, i) => template(item, i))}
-          </Col>
-        </Row>
-      )
-    }
+    //   return (
+    //     <Row className='WaterFall' gutter={8}>
+    //       <Col xs={24} lg={12}>
+    //         {leftItems.map((item, i) => template(item, i))}
+    //       </Col>
+    //       <Col xs={24} lg={12}>
+    //         {rightItems.map((item, i) => template(item, i))}
+    //       </Col>
+    //     </Row>
+    //   )
+    // }
 
     return (
       <div>

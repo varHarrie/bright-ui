@@ -28,7 +28,7 @@ export default class Page extends React.Component {
       <ScrollBar className="Page">
         <div className="Page__header">
           <h2 className="Page__title">
-            {meta.title}
+            {meta.title}&nbsp;
             <span>{meta.subtitle}</span>
           </h2>
           <Divider/>
