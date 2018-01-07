@@ -3,7 +3,7 @@ import './styles/index.less'
 
 import React from 'react'
 import {withRouter} from 'react-router'
-import {Route} from 'react-router-dom'
+import {Route, Link} from 'react-router-dom'
 import {Col, Divider, Icon, Input, Row, ScrollBar, List} from 'bright-ui'
 
 import Page from './Page'
@@ -66,6 +66,9 @@ class App extends React.Component {
                 <a href='https://github.com/varHarrie/bright-ui'>
                   <List.Item><Icon name='github'>GitHub</Icon></List.Item>
                 </a>
+                <Link to='/'>
+                  <List.Item selected={url === ''}><Icon name='book'>快速上手</Icon></List.Item>
+                </Link>
                 {filteredComponents.map((component) => (
                   <List.Item
                     key={component.meta.title}

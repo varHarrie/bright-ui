@@ -3,7 +3,10 @@ const path = require('path')
 const promisify = require('util').promisify
 const yfm = require('yaml-front-matter')
 const generateFiles = require('./generate-files')
+const mt = require('mark-twain')
+const fse = require('fs-extra')
 
+const readFile = promisify(fs.readFile)
 const writeFile = promisify(fs.writeFile)
 
 const lang = 'zh-CN'
@@ -32,7 +35,7 @@ function findMarkdown (directory, lang) {
   return markdowns
 }
 
-const promises = findMarkdown(path.join(root, 'src'), lang)
+const promises = findMarkdown(path.join(root, 'src/components'), lang)
   .map(({name, fullPath}) => {
     const target = path.join(targetDirectory, name.replace(/\.md$/, ''))
 
@@ -47,3 +50,16 @@ Promise
     exports += `\nexport default [${docs.map((name) => '_' + name).join(',')}]`
     writeFile(path.join(targetDirectory, 'index.js'), [imports, exports].join('\n'), 'utf8')
   })
+
+const docPromises = findMarkdown(path.join(root, 'src/docs'), lang)
+  .map((file) => {
+    return readFile(file.fullPath, 'utf8')
+      .then((source) => mt(source))
+      .then((source) => {
+        const targetPath = path.join(root, 'site-src/docs', file.name.replace('.md', '.js'))
+        const content = `export default ${JSON.stringify(source.content)}`
+        return writeFile(targetPath, content, 'utf8')
+      })
+  })
+
+fse.mkdirp(path.join(root, 'site-src/docs')).then(() => Promise.all(docPromises))
