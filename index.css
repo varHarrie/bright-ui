@@ -116,6 +116,17 @@ a {
 .Page__title {
   margin-top: 0;
 }
+.Page blockquote {
+  margin: 0;
+}
+.Page pre {
+  padding: 10px;
+  background: #f2f2f3;
+}
+.Page pre code {
+  font-family: consolas;
+  font-size: 14px;
+}
 .Example {
   margin-bottom: 30px;
 }
