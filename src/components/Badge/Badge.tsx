@@ -2,7 +2,7 @@ import './Badge.less'
 
 import * as React from 'react'
 
-import Base, {ColorType} from '../../common/Base'
+import Base, {ColorType} from '../../commons/Base'
 
 export interface IBadgeProps {
   value?: number | string

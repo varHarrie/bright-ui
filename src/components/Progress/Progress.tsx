@@ -2,7 +2,7 @@ import './Progress.less'
 
 import * as React from 'react'
 
-import Base, {ColorType} from '../../common/Base'
+import Base, {ColorType} from '../../commons/Base'
 import * as numberUtil from '../../utils/number'
 
 const defaultFormat = (percent: number) => percent + '%'

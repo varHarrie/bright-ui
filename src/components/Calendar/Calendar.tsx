@@ -2,7 +2,7 @@ import './Calendar.less'
 
 import * as React from 'react'
 
-import Base from '../../common/Base'
+import Base from '../../commons/Base'
 import Icon from '../Icon'
 import CalendarCell from './components/CalendarCell'
 import DatePanel from './components/DatePanel'

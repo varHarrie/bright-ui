@@ -3,7 +3,7 @@ import './SidePanel.less'
 import * as React from 'react'
 import * as CSSTransition from 'react-transition-group/CSSTransition'
 
-import Base from '../../common/Base'
+import Base from '../../commons/Base'
 import ScrollBar from '../ScrollBar'
 
 export interface ISidePanelProps {

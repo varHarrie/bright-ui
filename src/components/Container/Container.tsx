@@ -2,7 +2,7 @@ import './Container.less'
 
 import * as React from 'react'
 
-import Base from '../../common/Base'
+import Base from '../../commons/Base'
 
 export interface IContainerProps {
   xs?: number | 'auto' | 'fixed'

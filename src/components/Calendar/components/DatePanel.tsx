@@ -4,7 +4,7 @@ import * as isSameDay from 'date-fns/is_same_day'
 import * as startOfWeek from 'date-fns/start_of_week'
 import * as React from 'react'
 
-import Base from '../../../common/Base'
+import Base from '../../../commons/Base'
 import {weekdayNames} from '../locale'
 import CalendarCell from './CalendarCell'
 

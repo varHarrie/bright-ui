@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Base from '../../common/Base'
+import Base from '../../commons/Base'
 import './Layout.less'
 
 const margins = {

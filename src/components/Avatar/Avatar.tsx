@@ -2,7 +2,7 @@ import './Avatar.less'
 
 import * as React from 'react'
 
-import Base, {RadiusType, SizeType} from '../../common/Base'
+import Base, {RadiusType, SizeType} from '../../commons/Base'
 
 export interface IAvatarProps {
   src?: string

@@ -2,7 +2,7 @@ import './ButtonGroup.less'
 
 import * as React from 'react'
 
-import Base, {DirectionType} from '../../common/Base'
+import Base, {DirectionType} from '../../commons/Base'
 
 export interface IButtonGroupProps {
   full?: boolean

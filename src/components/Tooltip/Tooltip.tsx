@@ -2,8 +2,8 @@ import './Tooltip.less'
 
 import * as React from 'react'
 
-import Base from '../../common/Base'
-import BasePopover, {IBasePopoverProps} from '../../common/BasePopover'
+import Base from '../../commons/Base'
+import BasePopover, {IBasePopoverProps} from '../../commons/BasePopover'
 
 export interface ITooltipProps extends IBasePopoverProps {
   color?: 'dark' | 'light'

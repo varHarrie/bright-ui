@@ -2,7 +2,7 @@ import './Input.less'
 
 import * as React from 'react'
 
-import Base, {RadiusType} from '../../common/Base'
+import Base, {RadiusType} from '../../commons/Base'
 import Icon from '../Icon'
 import InputGroup from './InputGroup'
 

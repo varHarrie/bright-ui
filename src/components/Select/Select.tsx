@@ -3,7 +3,7 @@ import './Select.less'
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
-import Base, {SizeType} from '../../common/Base'
+import Base, {SizeType} from '../../commons/Base'
 import * as commonUtils from '../../utils/common'
 import Icon from '../Icon'
 import Input from '../Input'

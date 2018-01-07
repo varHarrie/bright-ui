@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 
-import Base, {SizeType} from '../../common/Base'
+import Base, {SizeType} from '../../commons/Base'
 import * as overlayUtil from '../../utils/overlay'
 import Confirm from './Confirm'
 

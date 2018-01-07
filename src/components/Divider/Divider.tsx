@@ -2,7 +2,7 @@ import './Divider.less'
 
 import * as React from 'react'
 
-import Base from '../../common/Base'
+import Base from '../../commons/Base'
 
 export interface IDividerProps {
   direction?: 'horizontal' | 'vertical'

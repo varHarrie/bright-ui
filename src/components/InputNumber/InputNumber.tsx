@@ -2,7 +2,7 @@ import './InputNumber.less'
 
 import * as React from 'react'
 
-import Base, {RadiusType} from '../../common/Base'
+import Base, {RadiusType} from '../../commons/Base'
 import Input from '../Input'
 
 const TIMER_DELAY = 600

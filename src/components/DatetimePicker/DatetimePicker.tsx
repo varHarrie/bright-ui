@@ -2,7 +2,7 @@ import './DatetimePicker.less'
 
 import * as React from 'react'
 
-import Base, {PopoverTriggerType, SizeType} from '../../common/Base'
+import Base, {PopoverTriggerType, SizeType} from '../../commons/Base'
 import * as dateUtil from '../../utils/date'
 import Calendar from '../Calendar'
 import Input from '../Input'

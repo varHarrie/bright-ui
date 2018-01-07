@@ -1,7 +1,7 @@
 import * as PropTypes from 'prop-types'
 import * as React from 'react'
 
-import Base from '../../common/Base'
+import Base from '../../commons/Base'
 import * as commonUtil from '../../utils/common'
 import Form from './Form'
 import {IValidationError} from './FormStore'

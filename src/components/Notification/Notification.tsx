@@ -2,8 +2,8 @@ import './Notification.less'
 
 import * as React from 'react'
 
-import Base, {NotificationType} from '../../common/Base'
-import HeightTransition from '../../common/Transitions/HeightTransition'
+import Base, {NotificationType} from '../../commons/Base'
+import HeightTransition from '../../commons/Transitions/HeightTransition'
 import Icon from '../Icon'
 import {danger, info, open, success, warning} from './functional-notification'
 

@@ -2,8 +2,8 @@ import './Dialog.less'
 
 import * as React from 'react'
 
-import Base, {ButtonColorType, SizeType} from '../../common/Base'
-import BaseDialog from '../../common/BaseDialog'
+import Base, {ButtonColorType, SizeType} from '../../commons/Base'
+import BaseDialog from '../../commons/BaseDialog'
 import Button from '../Button'
 import Icon from '../Icon'
 import Confirm from './Confirm'

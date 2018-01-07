@@ -2,7 +2,7 @@ import './PopoverConfirm.less'
 
 import * as React from 'react'
 
-import Base, {ButtonColorType} from '../../common/Base'
+import Base, {ButtonColorType} from '../../commons/Base'
 import Button from '../Button'
 import Popover, {IPopoverProps} from './Popover'
 

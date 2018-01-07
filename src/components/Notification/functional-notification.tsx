@@ -3,7 +3,7 @@ import * as ReactDOM from 'react-dom'
 import * as CSSTransition from 'react-transition-group/CSSTransition'
 import * as TransitionGroup from 'react-transition-group/TransitionGroup'
 
-import Base, {NotificationType, NotificationPlacement} from '../../common/Base'
+import Base, {NotificationType, NotificationPlacement} from '../../commons/Base'
 import * as overlayUtil from '../../utils/overlay'
 import * as stringUtil from '../../utils/string'
 import Notification from './Notification'

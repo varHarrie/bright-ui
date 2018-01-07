@@ -2,7 +2,7 @@ import './Textarea.less'
 
 import * as React from 'react'
 
-import Base, {SizeType} from '../../common/Base'
+import Base, {SizeType} from '../../commons/Base'
 
 export interface ITextareaProps {
   value?: string
