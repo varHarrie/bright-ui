@@ -1,6 +1,6 @@
 {
   "name": "bright-ui",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A set of components for React 16+.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -30,7 +30,7 @@
   "bugs": {
     "url": "https://github.com/varHarrie/bright-ui/issues"
   },
-  "homepage": "https://github.com/varHarrie/bright-ui#readme",
+  "homepage": "https://varharrie.github.io/bright-ui",
   "devDependencies": {
     "@types/react-hot-loader": "^3.0.5",
     "autoprefixer": "^7.1.6",
