@@ -48,6 +48,7 @@ class App extends React.Component {
           <Col className='App__header' xs={24} sm={24} md={8} lg={6} xl={6}>
             <h1 className='App__title'>
               <img className='App__logo' src={logo} alt='Bright UI'/>
+              <sup className='App__version'>v0.1</sup>
               <div className='App__subtitle'>
                 React Components
               </div>

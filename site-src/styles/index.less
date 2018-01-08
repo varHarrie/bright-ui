@@ -99,6 +99,11 @@ a {
   &__logo {
     height: 40px;
   }
+
+  &__version {
+    margin-left: 5px;
+    font-size: 12px;
+  }
   
   &__subtitle {
     margin-top: 5px;
@@ -110,7 +115,7 @@ a {
 
   &__menu {
     margin-top: 15px;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     flex: 1;
     font-weight: lighter;
   }
@@ -119,6 +124,20 @@ a {
     height: 100%;
     background: white;
     box-shadow: -10px 0 10px rgba(0, 0, 0, 0.015);
+  }
+}
+
+@media (max-width: @screen-md-min) {
+  .App {
+    &__header {
+      display: block;
+      height: auto;
+    }
+
+    &__container {
+      margin-bottom: 50px;
+      height: auto;
+    }
   }
 }
 
@@ -136,7 +155,7 @@ a {
   pre {
     padding: 10px;
     background: @color-gray-lighter;
-    
+
     code  {
       font-family: consolas;
       font-size: 14px;
@@ -182,7 +201,7 @@ a {
   &__raw {
     padding: 10px;
     border-top: @border;
-    
+
     pre {
       font-family: consolas;
       font-size: 14px;
