@@ -11,7 +11,7 @@ npm install bright-ui --save
 ## 使用
 
 ```js
-import 'bright-ui/index.css'
+import 'bright-ui/dist/index.css'
 import {Button} from 'bright-ui'
 
 import React from 'react'
