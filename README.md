@@ -2,6 +2,8 @@
 
 A set of components for React 16+ built with TypeScript.
 
+[Read the docs](https://varharrie.github.io/bright-ui/)
+
 > :rocket: Work in progress...
 
 ## Overview
@@ -28,3 +30,7 @@ ReactDOM.render(
   document.getElementById('app')
 )
 ```
+
+## License
+
+[The MIT License](https://github.com/varHarrie/bright-ui/blob/master/LICENSE)
